@@ -20,3 +20,6 @@ FATAL:  database "www_testcom" does not exist
 FATAL:  database "www_testcom" does not exist
 FATAL:  database "www_testcom" does not exist
 FATAL:  database "www_testcom" does not exist
+LOG:  database system was shut down at 2013-09-28 00:37:17 CEST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
