@@ -1,56 +1,48 @@
 <?php
-
-	function s() {
-		if (func_num_args() > 0) {
-			$args = func_get_args();
-			call_user_func_array('var_dump', $args);
-		}
-		die;
-	}
 	
 	require __DIR__.'/autoload.php';
 	
+	// Controller Inside for the example
 	class MarvelousController extends Pesto\Handling\Controller {
 		public function indexAction() {
-			$v = $this->getRepo("person")->getOneBy("name","Mon bateau");
+			// first array for view, second for the layout
 			return $this->createView('public/hello',[
-				'hello' => "Mon dieu",
-				'title' => "Title",
+				'hello' => "Hello Marvelous",
 			],[
-				'title' => 'Mon beau titre',
+				'title' => 'Inside controller way',
 			]);
 		}
 	}
 	
+	// declare applciation and all configurations
 	$Application = new Pesto\Application();
 	$Application
-		->defineDatabase(new Pesto\Storage\Database("ffaltin","ff","www_testcom"))
+		->defineDatabase(new Pesto\Storage\Database("ffaltin","ff","www_testcom","localhost","pgsql"))
 		->setConfig([
 			"pathApp" => __DIR__,
 			"baseLayoutName" => "base",
 			"themeName" => "desktop",
-			"appName" => "Mon petit bateau rouge",
+			"appName" => "Pesto Application Sample",
 		])
 	;
-	
+	// define the Inside controller and map application to it
 	$marvelousController = new MarvelousController();
 	$marvelousController->defineApplication($Application);
 	
 	// fast way
 	$Application
 		->match('/', function() use ($Application){
-			$view = $Application->createView("public/hello")
+			$content = $Application->createView("public/hello")
 				->assign([
-					"hello"=>"Hello ds world",
+					"hello"=>"Hello world",
 				])
 				->render()
 			;
 			
 			// If you want to use layout
-			return $Application->getLayout()->assign([
-				"content"=>$view,
-				"title" => "Hello",
-				"hello" => "Mondieu",
+			return $Application->addToLayout([
+				"content"=>$content,
+				"title" => "Simple way",
 			]);
 		})
 		// controllers way (external file)
@@ -59,33 +51,31 @@
 		->match("/marvelous", $marvelousController->indexAction())
 	// Mount routes
 		->mount("/hello",function() use ($Application) {
-			$Application->get("/Jhon",function() use ($Application) {
-				print $Application->createView("public/hello")
+			$Application->get("/fred",function() use ($Application) {
+				// with Layout
+				$view = $Application->createView("public/hello")
 					->assign([
-						"hello"=>"Hello het",
+						"hello"=>"Hello fred",
 					])
 					->render()
-				;
-			});
-			$Application->get("/het",function() use ($Application) {
-				print $Application->createView("public/hello")
-					->assign([
-						"hello"=>"Hello het",
-					])
-					->render()
-				;
+				;				
+				// If you want to use layout
+				return $Application->addToLayout([
+					"content"=>$view,
+					"title" => "Mount way",
+				]);
 			});
 			
 			$Application->get("/([a-z0-9]+)",function($name) use ($Application) {
-				print $Application->createView("public/hello")
+				// without Layout
+				return new Pesto\Handling\Response($Application->createView("public/hello")
 					->assign([
-						"hello"=>$name,
+						"hello"=> "Hello {$name}",
 					])
-					->render()
-				;
+					->render());
 			});
 		})
 	;
-	
+	// Start application
 	$Application->run();
 	

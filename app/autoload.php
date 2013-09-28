@@ -1,5 +1,14 @@
 <?php
 
+// helper
+function s() {
+	if (func_num_args() > 0) {
+		$args = func_get_args();
+		call_user_func_array('var_dump', $args);
+	}
+	die;
+}
+
 $vendorPath = __dir__ .'/../vendor';
 
 require $vendorPath.'/Pesto/src/Pesto/Util/Autoloader.php';

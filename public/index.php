@@ -1,4 +1,4 @@
 <?php
 	
-	require "../app/init.php";
+	require "../app/App.php";
 

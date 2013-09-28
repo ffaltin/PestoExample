@@ -7,10 +7,9 @@
 		public function helloAction($args) {
 			$v = $this->getRepo("person")->getOneBy("name","Mon bateau");
 			return $this->createView('public/hello',[
-				'hello' => "Mon dieu",
-				'title' => "Title",
+				'hello' => "Hello database person: {$v->name}",
 			],[
-				'title' => 'Mon beau titre',
+				'title' => 'External Controller',
 			]);
 		}
 		
