@@ -1,7 +1,5 @@
 <?php
 
-	define ('PATH_APP', __dir__);
-
 	function s() {
 		if (func_num_args() > 0) {
 			$args = func_get_args();
