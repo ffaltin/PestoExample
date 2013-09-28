@@ -1,0 +1,21 @@
+/* Mixin function -------------------------------------- */
+@import "../fix/fix.ie7.less";
+/* Global parameters ------------------------------- */
+@nbColumns: 12;
+@mainWidth: 960px; 
+@minLargeWidth: 768px;
+@minMediumWidth: 500px;
+/* Used to calculate the size width for grid.less */
+@baseWidth: 100%;
+
+/* conditionnal params ---------------------------- */
+@msie7: true;
+@useNormalize: true;
+@useResizeTransition: true;
+
+// include functions
+.include (@value) when (@useNormalize = true) and (@value = normalize) {
+	@import "../includes/normalize.less";
+}
+// init the include
+.include(normalize);

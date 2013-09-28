@@ -1,0 +1,82 @@
+/*
+**  Breakcrumb Component
+*/
+.crumb-container {
+	display: block;
+	padding: @crumbPadding;
+	overflow: hidden;
+	width: 100%;
+	list-style: none;
+	border-style: @crumbBorderStyle;
+	border-width: @crumbBorderSize;
+	.border-radius(@crumbRadius);
+
+	background-color: @crumbBackground;
+	border-color: @crumbBorderColor;
+}
+
+.crumbs {
+	margin: 0;
+	padding: 0 @crumbSidePadding 0 0;
+	.inline-block;
+	a {
+		text-decoration: @crumbLinkDecor;
+	}
+	&:hover a,
+	&:focus a {
+		text-decoration: @crumbLinkDecorHover;
+		color: @crumbFontColorHover;
+	}
+
+	a,
+	span {
+		font-size: @crumbFontSize;
+		padding: @crumbSidePadding;
+		text-transform: @crumbFontTransform;
+		color: @crumbFontColor;
+	}
+
+	&.current {
+		a {
+			cursor: default;
+			color: @crumbFontColorCurrent;
+			text-decoration: none;
+		}
+
+		&:hover a,
+		&:focus a { text-decoration: none; }
+	}
+
+	&.unavailable {
+		a { color: @crumbFontColorUnavailable; }
+		text-decoration: none;
+		&:hover a,
+		a:focus {
+			text-decoration: none;
+			color: @crumbFontColorUnavailable;
+			cursor: default;
+		}
+	}
+
+	&:before {
+		content: "@{crumbSlash}";
+		color: @crumbSlashColor;
+		font-family: @crumSlashFontFamily;
+		position: relative;
+		top: 1px;
+	}
+
+	&:first-child:before { content: " "; }
+}
+
+// set default Breadcrum Style
+.defaultBreadcrumStyle(@arg) when (@arg = true) {
+	.breadcrumbs {
+		.crumb-container;
+		li {
+			.crumbs;
+		}
+	}
+}
+// active or not the default style
+.defaultBreadcrumStyle(@useDefaultBreadcrumStyle);

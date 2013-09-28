@@ -1,0 +1,102 @@
+.menuBase () {
+	.transition;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: block;
+	margin-bottom: 1.5%;
+	background: @menuBackground;
+	> li {
+		display: inline-block;
+		.fixIe7(display,inline-block);
+		vertical-align: top;
+		a, a:visited {
+			background: @menuBtnBackground;
+			display: block;
+			padding: @menuBtnPadding;
+			text-decoration: none;
+			color: @menuBtnColor;
+			width: 100%;
+			&:hover, &:focus{
+				color: #fff;
+				background: @primaryColor;
+			}
+			&.active {
+				&, &:hover, &:focus {
+					color: @activeColor;
+				}
+			}
+		}
+		> ul {
+			display: none;
+			position: absolute;
+			z-index: 1000;
+			padding: 0;
+			margin: 0;
+		}
+		&.current {
+			a, a:visited, & {
+				color: @menuBtnColorHover;
+				background: @menuBtnBackgroundHover;
+			}
+		}
+		&:hover, &:focus {
+			a, a:visited, & {
+				color: @menuBtnColorHover;
+				background: @menuBtnBackgroundHover;
+			}
+			> ul {
+				display: block;
+				background: @menu2ndBackground;
+				 > li {
+					display: block;
+					width: 100%;
+					a, a:visited {
+						color: @menu2ndBtnColor;
+						background: @menu2ndBtnBackground;
+						&:hover, &:focus{
+							color: @menu2ndBtnColorHover;
+							background: @menu2ndBtnBackgroundHover;
+						}
+					}
+				}
+			}
+		}
+		
+		// @media only screen and (max-width: @minLargeWidth) {
+			// width: 50%;
+			// margin-right: 0;
+			// text-indent: 1em;
+			// a, a:visited {
+				// padding: 0;
+				// width: 100%;
+			// }
+			// > ul {
+				// width: 50%;
+				// text-indent: 1.8em;
+			// }
+		// }
+		
+		// @media only screen and (max-width: @minMediumWidth) {
+			// width: 100%;
+			// margin-right: 0;
+			// border: none;
+			// text-indent: 0.5em;
+			// > ul {
+				// width: 100%;
+				// position: relative;
+				// text-indent: 1em;
+			// }
+		// }
+	}
+}
+
+// set default Navigation Style
+.defaultNavigationStyle(@arg) when (@arg = true) {
+	nav > ul {
+		.menuBase();
+	}
+}
+// active or not the default style
+.defaultNavigationStyle(@useDefaultNavigationStyle);
+

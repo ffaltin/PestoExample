@@ -1,0 +1,9 @@
+{
+  "name": "pathjs",
+  "version": "0.0.0",
+  "commit": "2fe037d6b2d54ab70e0490b90cce16bd5fce9cca",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mtrpcic/pathjs.git"
+  }
+}

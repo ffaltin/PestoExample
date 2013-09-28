@@ -1,0 +1,9 @@
+{
+  "name": "ljs",
+  "version": "0.0.0",
+  "commit": "f9aabbb3cd50d48dd5ebc04112bda0e618c95512",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malko/l.js.git"
+  }
+}

@@ -1,0 +1,100 @@
+/*
+	Messaging component
+*/
+.messageBase () {
+	.border-radius(@messagingBorderRadiusStyle);
+	border: 1px solid transparent;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0.5em 1em;
+	font-size: 0.9em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	@media only screen and (max-width: @minLargeWidth) {
+		text-align: center;
+	}
+}
+
+.message (@type) when (@type = "success") {
+	.messageBase;
+	background-color: @messagingBackgroundSuccess;
+	border-color: @messagingBorderSuccess;
+	color: @messagingColorSuccess;
+}
+
+.message (@type) when (@type = "error") {
+	.messageBase;
+	background-color: @messagingBackgroundError;
+	border-color: @messagingBorderError;
+	color: @messagingColorError;
+}
+
+.message (@type) when (@type = "warning") {
+	.messageBase;
+	background-color: @messagingBackgroundWarning;
+	border-color: @messagingBorderWarning;
+	color: @messagingColorWarning;
+}
+
+.message (@type) when (@type = "information") {
+	.messageBase;
+	background-color: @messagingBackgroundInformation;
+	border-color: @messagingBorderInformation;
+	color: @messagingColorInformation;
+}
+// Alert messaging
+.alertBase() {
+	.messageBase;
+	.border-radius(0);
+	padding: 1em;
+	margin: 0;
+	border: none;
+	border-bottom: 1px solid;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+}
+
+.alert(@type) when (@type = "success") {
+	.alertBase;
+	background-color: @messagingBackgroundSuccess;
+	border-color: @messagingBorderSuccess;
+	color: @messagingColorSuccess;
+}
+
+.alert(@type) when (@type = "error") {
+	.alertBase;
+	background-color: @messagingBackgroundError;
+	border-color: @messagingBorderError;
+	color: @messagingColorWarning;
+}
+
+.alert(@type) when (@type = "warning") {
+	.alertBase;
+	background-color: @messagingBackgroundWarning;
+	border-color: @messagingBorderWarning;
+	color: @messagingColorWarning;
+}
+
+.alert(@type) when (@type = "information") {
+	.alertBase;
+	background-color: @messagingBackgroundInformation;
+	border-color: @messagingBorderInformation;
+	color: @messagingColorInformation;
+}
+
+// map "object" Message to msg-flash class
+.msg-flash {
+	&.success {.message("success");}
+	&.error {.message("error");}
+	&.information {.message("information");}
+	&.warning {.message("warning");}
+}
+// map "object" Alert to msg-alert class
+.msg-alert {
+	&.information {.alert("information");}
+	&.error {.alert("error");}
+	&.warning {.alert("warning");}
+	&.success {.alert("success");}
+}
+

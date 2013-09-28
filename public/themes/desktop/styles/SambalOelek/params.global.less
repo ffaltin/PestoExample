@@ -1,0 +1,177 @@
+/* Global parameters ------------------------------- */
+	@nbColumns: 12;
+	@mainWidth: 960px; 
+	@minLargeWidth: 768px;
+	@minMediumWidth: 500px;
+	
+	@primaryColor: #fc6902;;
+	@secondaryColor: #d94e4e;
+	@activeColor: lighten(@primaryColor,10%);
+	
+	@defaultRadiusBorder: 8px;
+	
+/* Used to calculate the size width for grid.less */
+	@baseWidth: 100%;
+
+/* conditionnal params ---------------------------- */
+	@msie7: false;
+	@useNormalize: false;
+	@useReset: true;
+	@useResizeTransition: false;
+/* all about default style --------------------------- */
+	@useDefaultTableStyle: false;
+	@useDefaultFormStyle: true;
+	@useDefaultTagStyle: true;
+	@useDefaultBreadcrumStyle: false;
+	@useDefaultNavigationStyle: false;
+	@useDefaultButtonStyle: true;
+
+/* Messaging parameters --------------------------------------------- */
+	@messagingBackgroundSuccess: #dff0d8;
+	@messagingBorderSuccess: #d7e9c7;
+	@messagingColorSuccess: #468847;
+
+	@messagingBackgroundError: #eebab9;
+	@messagingBorderError: darken(@messagingBackgroundError,15%);
+	@messagingColorError: #bd2d31;
+
+	@messagingBackgroundWarning: #fef0b1;
+	@messagingBorderWarning: darken(@messagingBackgroundWarning,15%);
+	@messagingColorWarning: #be8f1f;
+	
+	@messagingBackgroundInformation: #d9edf7;
+	@messagingBorderInformation: #bce8f1;
+	@messagingColorInformation: #3a87ad;
+
+	@messagingBorderRadiusStyle: @defaultRadiusBorder;
+/* EndMessaging parameters --------------------------------------------- */
+
+/* Form component parameters -------------------------------------------*/
+	@formInputBackground: #fff;
+	@formInputBorderColor: #ccc;
+	@formInputTextColor: rgba(0, 0, 0, 0.75);
+	
+	@formInputBackgroundFocus: #fafafa;
+	@formInputBorderColorFocus: #999999;
+	@formInputTextColorFocus: rgba(0, 0, 0, 0.75);
+	
+	@formInputBackgroundDisabled: #ddd;
+	@formInputBorderColorDisabled: #ccc;
+	@formInputTextColorDisabled: rgba(0, 0, 0, 0.75);
+	
+	@formFontSize: 0.875em;
+	@formInvalidBackground:@messagingBackgroundError;
+	@formInvalidBorder: @messagingBorderError;
+	@formInvalidTextColor: @messagingColorError;
+	@formInvalidBackgroundFocus:@formInvalidBackground;
+	@formInvalidBorderFocus:@formInvalidBorder;
+	@formInvalidTextColorFocus:@formInvalidTextColor;
+/* EndForm parameters --------------------------------------------------- */
+
+/* Tag Style component parameters ------------------------------------- */
+	@tagLinkColor: @primaryColor;
+	@tagLinkDecoration: none;
+	@tagLinkColorHover: @secondaryColor;
+
+	@tagParagraphLineHeight: 1.6;
+	@tagParagraphFontSize: 1em;
+	@tagParagraphMarginBottom: 1.25em;
+
+	@tagHeaderFontFamily: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	@tagHeaderFontWeight: bold;
+	@tagHeaderColor: #222;
+/* End Tag Style component parameters -------------------------------- */
+
+/* Table style component parameters ------------------------------------ */
+	@tableBackground: #fff;
+	@tableBorderColor:#dddddd;
+	@TableTheadBackground: #f5f5f5;
+	@TableTheadColor: #222;
+	@TableTbodyTrEvenBackground: #f9f9f9;
+	@TableTbodyTdColor:#333;
+	@tableFontSize:14px;
+/* End Table Style component parameters -------------------------------- */
+
+/* Breadcrumbs component parameters ----------------------------------- */
+	// We use this to set the background color for the breadcrumb container.
+	@crumbBackground: #efefef;
+	// We use these to set the padding around the breadcrumbs.
+	@crumbPadding: 6px 14px 9px;
+	@crumbSidePadding: 12px;
+	// We use these to control border styles.
+	@crumbFunctionFactor: 10%;
+	@crumbBorderSize: 1px;
+	@crumbBorderStyle: solid;
+	@crumbBorderColor: darken(@crumbBackground, @crumbFunctionFactor);
+	@crumbRadius: @defaultRadiusBorder;
+	// We use these to set various text styles for breadcrumbs.
+	@crumbFontSize: 11px;
+	@crumbFontColor: @primaryColor;
+	@crumbFontColorHover: @primaryColor;
+	@crumbFontColorCurrent: #333;
+	@crumbFontColorUnavailable: #999;
+	@crumbFontTransform: uppercase;
+	@crumbLinkDecor: none;
+	@crumbLinkDecorHover: underline;
+	// We use these to control the slash between breadcrumbs
+	@crumbSlashColor: #aaa;
+	@crumbSlash: "/";
+	@crumSlashFontFamily: inherit;
+/* End Breadcrumbs component parameters -------------------------------- */
+
+/* Navigation component parameters ----------------------------------- */
+	@menuBackground: transparent;
+	@menuBtnBackground: transparent;
+	@menuBtnColor: #84858a;
+	@menuBtnPadding: 0.2em 0.6em;
+	// we use this for hover
+	@menuBtnBackgroundHover: transparent;
+	@menuBtnColorHover: #222;
+	// we use this for the second level of the menu main
+	@menu2ndBackground: @menuBackground;
+	@menu2ndBtnBackgroundHover: @menuBtnBackgroundHover;
+	@menu2ndBtnBackground: @menuBtnBackground;
+	@menu2ndBtnColor: @menuBtnColor;
+	@menu2ndBtnColorHover: @menuBtnColorHover;
+/* End Navigation component parameters ----------------------------------- */
+	
+/* Button component parameters ----------------------------------- */
+	@buttonDefaultRadius: @defaultRadiusBorder;
+
+	@buttonBackground: @primaryColor;
+	@buttonPadding: 3px 15px;
+	@buttonColor: #fff;
+	@buttonBorder: none;
+	@buttonFontSize: 1em;
+	@buttonBackgroundHover: #313131;
+	@buttonColorHover: #efefef;
+	@buttonBorderHover: none;
+
+	@buttonSecondaryBackground: #f5f5f5;
+	@buttonSecondaryColor: #313131;
+	@buttonSecondaryBorder: 1px solid #dedede;
+	@buttonSecondaryBackgroundHover: #313131;
+	@buttonSecondaryColorHover: #efefef;
+	@buttonSecondaryBorderHover: 1px solid darken(#313131,10%);
+
+	@buttonErrorBackground: lighten(rgba(250,20,20,0.4),10%);
+	@buttonErrorColor: lighten(rgba(184,4,4,0.7),10%);
+	@buttonErrorBorder: 1px solid lighten(rgba(184,4,4,0.3),10%);
+	@buttonErrorBackgroundHover: rgba(250,20,20,0.4);
+	@buttonErrorColorHover: rgba(184,4,4,0.7);
+	@buttonErrorBorderHover: 1px solid rgba(184,4,4,0.3);
+	
+	@dropdownArrowColor: #fff;
+	@dropdownArrowSize: 6px;
+	@dropdownArrowTop: 5px;
+	
+	@dropdownBackground: #f5f5f5;
+	@dropdownBorder: 1px solid #dedede;
+	@dropdownPadding: 8px 0 5px 0;
+	@dropdownFontSize: 1em;
+	
+	@dropdownBtnColor: #444;
+	@dropdownBtnColorHover: #fff;
+	@dropdownBtnBackgroundHover: @primaryColor;
+/* End Button component parameters ----------------------------------- */
+

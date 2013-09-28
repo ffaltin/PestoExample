@@ -1,0 +1,24 @@
+@import "params.global.less";
+// include functions
+.include (@value) when (@useNormalize = true) and (@value = normalize) {
+	@import "includes/normalize.less";
+}
+// include functions
+.include (@value) when (@useReset = true) and (@value = reset) {
+	@import "includes/reset.less";
+}
+// init the include
+.include(normalize);
+.include(reset);
+/* Mixin function -------------------------------------- */
+@import "fix/fix.ie7.less";
+@import "includes/up.less";
+/* Import components  ------------------------------- */
+@import "components/grid.less";
+@import "components/styles.less";
+@import "components/messaging.less";
+@import "components/breadcrumbs.less";
+@import "components/navigation.less";
+@import "components/buttons.less";
+
+// @import "extra/grid.css.less";

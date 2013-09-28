@@ -1,0 +1,3 @@
+2013-06-12 15:22:19 CEST FATAL:  le fichier verrou « postmaster.pid » existe déjà
+2013-06-12 15:22:19 CEST ASTUCE :  Un autre postmaster (de PID 4700) est-il déjà lancé avec comme répertoire de
+	données « d:/Services/Postgres/data » ?

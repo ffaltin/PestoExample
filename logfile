@@ -1,0 +1,22 @@
+^CLOG:  database system was interrupted; last known up at 2013-09-26 14:57:17 CEST
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  record with zero length at 0/31D1530
+LOG:  redo is not required
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist
+FATAL:  database "www_testcom" does not exist

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="<?php print $language ?>" dir="ltr">
+	<head>
+		<title><?php print $title ?></title>
+		<meta charset="utf-8" />
+		<meta name="author" content="" />
+		<script src="/themes/<?php print $theme ?>/components/config.js" type="text/javascript"></script>
+		<script src="/themes/<?php print $theme ?>/components/ljs/l.min.js" type="text/javascript"></script>
+		<script type="text/javascript">ljs.addAliases(jlsConfig);</script>
+		<script src="/themes/<?php print $theme ?>/scripts/main.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/themes/<?php print $theme ?>/styles/all.css" />
+	</head>
+	<body>
+		<section id="mainContent">
+			<?php isset($content) && print($content) ?>
+		</section>
+	</body>
+</html>

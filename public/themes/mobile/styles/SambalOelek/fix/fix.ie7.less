@@ -1,0 +1,31 @@
+// create fix for ie7, only if you want it! The 'msie7' parameter is provided by params.global.less
+// I haven't find a better way for creating dynamic value with less...
+// Right
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = right) {
+	*right: @value;
+}
+// Left
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = left) {
+	*left: @value;
+}
+// Margin-left
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = margin-left) {
+	*margin-left: @value;
+}
+// Margin-right
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = margin-right) {
+	*margin-right: @value;
+}
+// Width
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = width) {
+	*width: @value;
+}
+// Height
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = height) {
+	*height: @value;
+}
+// inline-block
+.fixIe7(@attribute;@value) when (@msie7 = true) and (@attribute = display) and (@value = inline-block) {
+	*display: inline;
+	zoom: 1;
+}

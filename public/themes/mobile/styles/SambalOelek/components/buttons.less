@@ -1,0 +1,212 @@
+.buttonBase() {
+	&, &:visited {
+		.transition;
+		display: inline-block;
+		.fixIe7(display,inline-block);
+		padding: @buttonPadding;
+		text-decoration: none;
+		margin: 0;
+		background: @buttonBackground;
+		color: @buttonColor;
+		border: @buttonBorder;
+		font-size: @buttonFontSize;
+		&:hover, &:focus, &.current {
+			background: @buttonBackgroundHover;
+			color: @buttonColorHover;
+			border: @buttonBorderHover;
+		}
+	}
+}
+
+.button(@type:"classic") {
+	.buttonBase();
+	margin: 0 0.4em 0 0;
+	.border-radius(@buttonDefaultRadius);
+}
+
+.button(@type) when (@type = "inverted") {
+	.button();
+	&, &:visited {
+		background: @buttonBackgroundHover;
+		color: @buttonColorHover;
+		border: @buttonBorderHover;
+		&:hover, &.current {
+			background: @buttonBackground;
+			color: @buttonColor;
+			border: @buttonBorder;
+		}
+	}
+}
+
+.button(@type) when (@type = "secondary") {
+	.button();
+	&, &:visited {
+		background: @buttonSecondaryBackground;
+		color: @buttonSecondaryColor;
+		border: @buttonSecondaryBorder;
+		&:hover, &.current {
+			background: @buttonSecondaryBackgroundHover;
+			color: @buttonSecondaryColorHover;
+			border: @buttonSecondaryBorderHover;
+		}
+	}
+}
+
+.button(@type) when (@type = "error") {
+	.button();
+	&, &:visited {
+		background: @buttonErrorBackground;
+		color: @buttonErrorColor;
+		border: @buttonErrorBorder;
+		&:hover, &.current {
+			background: @buttonErrorBackgroundHover;
+			color: @buttonErrorColorHover;
+			border: @buttonErrorBorderHover;
+		}
+	}
+}
+
+.button(@type) when (@type = "next") {
+	.button();
+	&:after {
+		content: " »";
+	}
+}
+
+.dropdown() {
+	display: inline-block;
+	.fixIe7(display,inline-block);
+	position: relative;
+	z-index: 10000;
+	span {
+		.button();
+		cursor: pointer;
+	}
+	span:after {
+		display: inline-block;
+		.fixIe7(display,inline-block);;
+		border-color: @dropdownArrowColor transparent transparent transparent;
+		border-image: none;
+		border-style: solid;
+		border-width: @dropdownArrowSize;
+		content: "";
+		height: 0;
+		width: 0;
+		margin-left: 10px;
+		position: relative;
+		top: @dropdownArrowTop;
+	}
+	
+	> ul {
+		z-index: 9999;
+		display: none;
+		list-style: none;
+		background: @dropdownBackground;
+		position: absolute;
+		margin-top: 0px;
+		margin-left: 0px;
+		
+		border: @dropdownBorder;
+		font-size: @dropdownFontSize;
+		padding: @dropdownPadding;
+		width: inherit;
+		li {
+			width: 100%;
+			&.divider {
+				border-bottom: @dropdownBorder;
+				height: 3px;
+				line-height: 3px;
+				padding: 0;
+				margin-top: 3px;
+				margin-bottom: 7px;
+				float: left;
+			}
+			a {
+				width: 100%;
+				padding: 3px 15px;
+				display: inline-block;
+				.fixIe7(display,inline-block);;
+				color: @dropdownBtnColor;
+				font-size: 0.8em;
+				text-decoration: none;
+				&:hover {
+					color: @dropdownBtnColorHover;
+					background: @dropdownBtnBackgroundHover;
+				}
+			}
+		}
+	}
+	&:hover, &.active {
+		span {
+			.border-radius(@buttonDefaultRadius @buttonDefaultRadius 0 0);
+			background: @buttonBackgroundHover;
+			color: @buttonColorHover;
+			border: @buttonBorderHover;
+		}
+		> ul  {
+			.border-radius(0 0 @buttonDefaultRadius @buttonDefaultRadius);
+			display: block;
+		}
+	}		
+}
+
+.buttonGroup() {
+	padding: 0;
+	list-style: none;
+	> li {
+		display: inline-block;
+		.fixIe7(display,inline-block);;
+		margin: 0;
+		position: relative;
+		z-index: 2;
+		padding: 0;
+		a {
+			.buttonBase();
+			margin: 0;
+			margin-right: 0;
+		}
+		
+		&:first-child {
+			z-index: 1;
+			a {
+				border-right: none;
+				.border-radius(@buttonDefaultRadius 0 0 @buttonDefaultRadius);
+			}
+		}
+		&:last-child, &.last {
+			z-index: 1;
+			a {
+				border-left: none;
+				.border-radius(0 @buttonDefaultRadius @buttonDefaultRadius 0);
+			}
+		}
+	}
+}
+
+.buttonBar() {
+	ul {
+		.buttonGroup();
+		display: inline-block;
+		.fixIe7(display,inline-block);;
+		margin: 0;
+		margin-right: 10px;
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
+// set default Button Style
+.defaultButtonStyle(@arg) when (@arg = true) {
+	button, input[type=submit], input[type=button], input[type=reset] {
+		.button();
+	}
+	.button-bar {
+		.buttonBar();
+	}
+	.button-group {
+		.buttonGroup();
+	}
+}
+// active or not the default style
+.defaultButtonStyle(@useDefaultButtonStyle);

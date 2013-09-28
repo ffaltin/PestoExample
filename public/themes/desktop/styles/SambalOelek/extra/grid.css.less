@@ -1,0 +1,161 @@
+/* Import parameters  ------------------------------- */
+@import "params.grid.less";
+/* Functions -------------------------------------------- */
+// set all classes for the large view
+.gridPullClass (@index;@type) when (@type = large) {
+	(~".pull-@{index}") {
+		right: @min*@index;
+		// fix for ie7
+		.fixIe7(right,(@min*@index - 0.1));
+	}
+	
+	(~".push-@{index}") {
+		left: @min*@index;
+		// fix for ie7
+		.fixIe7(left,(@min*@index - 0.1));
+	}
+}
+// remove offset values for @type (large|medium|small|*)
+.reInitOffset(@index;@type;@iterations) when (@index < @iterations+1) {
+	// make the offset shortcut
+	(~".@{type}-offset-@{index}") {
+		.row &, & {
+			margin-left: 0;
+		}
+	}
+	.reInitOffset(@index + 1,@type,@iterations);	
+}
+
+// create the magical classes large-x or whatever-x
+.gridClass (@index;@type:large) when (@index < @nbColumns+1) {
+	// prepare min-width to mutliply with the index
+	@min: @baseWidth / @nbColumns;
+	// add pull/push only once, in this case, just for large ones
+	.gridPullClass(@index,@type);
+	// create the class large-*
+	(~".@{type}-@{index}") {
+		.row &, & {
+			width: @min*@index;
+			// fix for ie7
+			.fixIe7(width,(@min*@index - 0.1));
+			padding: 0;
+			&.centered {
+				// center
+				margin-left: (100% - @min*@index) /2;
+				// fix for ie7
+				.fixIe7(margin-left, (100% - @min*@index - 0.1) /2 );
+			}
+		}
+	}
+	
+	(~".@{type}-@{index}-up") {
+		&.block-grid > * {
+			width: 100% / @index;
+			.fixIe7(width,(100% / @index - 0.1));
+			display: inline-block;
+			.fixIe7(display,inline-block);
+		}
+	}
+	
+	// make the offset shortcut
+	(~".@{type}-offset-@{index}") {
+		.row &, & {
+			margin-left: @min*@index;
+			// fix for ie7
+			.fixIe7(margin-left,(@min*@index - 0.1));
+		}
+	}
+	// next iteration
+	.gridClass(@index + 1,@type);	
+}
+// when you use media queries, you don't want to be fucked by the previous extension's rule. Like large-8, medium-5, etc
+.resetColumnWidthClass (@index;@type:large) when (@index < @nbColumns+1) {
+	// reinit the class large-*, medium-*, whatever-*
+	(~".@{type}-@{index}") {
+		.row &, & {
+			width: 100%;
+			// fix for ie7
+			.fixIe7(width,(100% - 0.1));
+			padding: 0;
+			&.centered {
+				margin-left: 0;
+			}
+		}
+	}
+	.resetColumnWidthClass(@index + 1,@type);	
+}
+// set the grid for media queries
+.newMediaQueryGrid (@type;@resetPreviousType) {
+		// reset body
+		body { 
+			-webkit-text-size-adjust: none;
+			-ms-text-size-adjust: none;
+			width: 100%;
+			min-width: 0;
+			margin-left: 0;
+			margin-right: 0;
+			padding-left: 0;
+			padding-right: 0;
+		}
+		//
+		.row { width: auto; min-width: 0; margin-left: 0; margin-right: 0; }
+		
+		// re-init (large|medium|previoustype)-offset for new-offset
+		.reInitOffset(1,@resetPreviousType,@nbColumns);
+		// reinit (large|medium|previoustype)-value for new-type device
+		.resetColumnWidthClass(1,@resetPreviousType);
+		.gridClass(1,@type);
+}
+// set the resize transition
+.resizeTransition () when (@useResizeTransition = true) {
+	-webkit-transition: 0.2s all ease-out;
+	-moz-transition: 0.2s all ease-out;
+	transition: 0.2s all ease-out;
+}
+/* calcul parameters ------------------------------- */
+@minLargeWidthStep: @minLargeWidth - 1;
+@minMediumWidthStep: @minMediumWidth - 1;
+/* Global Reset & Standards ---------------------- */
+*, *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+/* Grid ----------------------------------------------- */
+.row {
+	width: @mainWidth;
+	min-width: @minLargeWidth;
+	max-width: 100%;
+	margin: 0 auto;
+	.row {
+		width: auto;
+		max-width: none;
+		min-width: 0;
+		margin: 0 -15px;
+	}
+}
+// prepare column, no fucking float...
+.column, .columns {
+	.resizeTransition;
+	display: inline-block;
+	.fixIe7(display,inline-block);
+	min-height: 1px;
+	position: relative; 
+}
+
+.block-grid {
+	display: block;
+}
+
+// "call" the gridClassLarge the first time with lowest value
+.gridClass(1);
+// htmlObject resize automatically
+img, object, embed { max-width: 100%; height: auto; }
+object, embed { height: 100%; }
+img { -ms-interpolation-mode: bicubic; }
+#map_canvas img, .map_canvas img { max-width: none!important; }
+
+// create the medium grid, reInit large values for medium
+@media only screen and (max-width: @minLargeWidthStep) {
+	.newMediaQueryGrid("medium","large");
+}
+// create the small grid, reInit medium values for small
+@media only screen and (max-width: @minMediumWidthStep) {
+	.newMediaQueryGrid("small","medium");
+}
