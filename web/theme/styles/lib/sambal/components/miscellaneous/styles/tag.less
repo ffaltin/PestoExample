@@ -1,0 +1,209 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sb-tag-style-apply-default () {
+	a:focus, select:focus, option:focus, input[type="submit"]:focus, input[type="button"]:focus  { outline: none; }
+	button::-moz-focus-inner { border: 0; } 
+	::-moz-selection {
+		background: @sb-primary-color;
+		color: @sb-secondary-color;
+		text-shadow: none;
+	}
+
+	::selection {
+		background: @sb-primary-color;
+		color: @sb-secondary-color;
+		text-shadow: none;
+	}
+	
+	body {
+		font: @sb-tag-font-size @sb-tag-font-family;
+	}
+	
+	p, ul, ol, li, dd, dt, dl, table, td, th, a, label, input, button {
+		font-family: @sb-tag-font-family;
+		font-weight: @sb-tag-font-weight;
+	}
+	
+	a:focus,
+	input[type="submit"]::-moz-focus-inner,
+	input[type="button"]::-moz-focus-inner {
+		border: 0px;
+	}
+	/* -default -link -styles */
+	a {
+		&, &:visited {
+			color: @sb-tag-link-color;
+			text-decoration: @sb-tag-link-decoration;
+			line-height: inherit; 
+			&:hover, &:focus {
+				color: @sb-tag-link-color-hover;
+			}
+			img {
+				border: none;
+			}
+		}
+	}
+	/* -default Paragraph styles */
+	p {
+		margin-top: 0;
+		color: @sb-tag-color;
+		font-family: @sb-tag-font-family;
+		font-weight: @sb-tag-font-weight;
+		font-size: @sb-tag-paragraph-font-size;
+		line-height: @sb-tag-paragraph-line-height;
+		margin-bottom: @sb-tag-paragraph-margin-bottom;
+		text-rendering: optimizeLegibility;
+		aside {
+			font-size: 0.875em;
+			line-height: 1.35;
+			font-style: italic;
+		}
+	}
+
+	ul li {
+		color: @sb-tag-color;
+		margin-top: 0;
+		font-family: @sb-tag-font-family;
+		font-weight: @sb-tag-font-weight;
+	}
+	
+	/* -default header styles */
+	h1, h2, h3, h4, h5, h6 {
+		font-family: @sb-tag-header-font-family;
+		font-weight: @sb-tag-header-font-weight;
+		font-style: normal;
+		color: @sb-tag-header-font-weight;
+		text-rendering: optimizeLegibility;
+		margin-top: 0.2em;
+		margin-bottom: 0.5em;
+		line-height: 1.2125em;
+	}
+
+	h1 { font-size: 1.6em;}
+	h2 { font-size: 1.4em;}
+	h3 { font-size: 1.25em;}
+	h4 { font-size: 1.15em;}
+	h5 { font-size: 1em; }
+	h6 { font-size: 1em; }
+
+	hr {
+		border: solid #dddddd;
+		border-width: 1px 0 0;
+		clear: both;
+		margin: 1.25em 0 1.1875em;
+		height: 0;
+	}
+
+	/* Helpful Typography -defaults */
+	em, i {
+		font-style: italic;
+		line-height: inherit;
+	}
+
+	strong, b {
+		font-family: @sb-tag-strong-font-family;
+		font-weight: @sb-tag-strong-font-weight;
+		line-height: inherit;
+	}
+
+	small {
+		font-size: 60%;
+		line-height: inherit;
+	}
+
+	code {
+		font-family: Consolas, "Liberation Mono", Courier, monospace;
+		font-weight: bold;
+		color: #7f0a0c; 
+	}
+
+	/* Lists */
+	ul, ol, dl {
+		font-size: 1em;
+		line-height: 1.6;
+		margin-bottom: 1.25em;
+		list-style-position: outside;
+		font-family: inherit;
+	}
+
+	/* Unordered Lists */
+	ul li ul, ul li ol {
+		margin-left: 1.25em;
+		margin-bottom: 0;
+		font-size: 1em;
+	}
+
+	/* Ordered Lists */
+	ol li ul, ol li ol {
+		margin-left: 1.25em;
+		margin-bottom: 0;
+	}
+
+	/* Definition Lists */
+	dl dt {
+		margin-bottom: 0.3em;
+		font-weight: bold;
+	}
+
+	dl dd {
+		margin-bottom: 0.75em;
+	}
+
+	/* Abbreviations */
+	abbr,
+	acronym {
+		text-transform: uppercase;
+		font-size: 90%;
+		color: #222222;
+		border-bottom: 1px dotted #dddddd;
+		cursor: help;
+	}
+
+	abbr {
+		text-transform: none;
+	}
+
+	/* Blockquotes */
+	blockquote {
+		margin: 0 0;
+		padding: 0.5625em 1.25em 0 1.1875em;
+		border-left: 5px solid @sb-primary-color;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		cite {
+			display: block;
+			font-size: 0.8125em;
+			color: #555555;
+			&:before {
+				content: "\2014 \0020"; 
+			}
+			a {
+				&, &:visited {
+					color: #555;
+				}
+			}
+		}
+		&, p {
+			line-height: 1.6;
+			color: #6f6f6f; 
+		}
+	}
+}

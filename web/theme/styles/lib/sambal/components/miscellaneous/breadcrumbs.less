@@ -1,0 +1,89 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+**  Breakcrumb Component
+*/
+.sb-crumb-container () {
+	display: block;
+	padding: @sb-crumb-padding;
+	overflow: hidden;
+	width: 100%;
+	list-style: none;
+	border-style: @sb-crumb-border-style;
+	border-width: @sb-crumb-border-size;
+	.border-radius(@sb-crumb-radius);
+
+	background-color: @sb-crumb-background;
+	border-color: @sb-crumb-border-color;
+}
+
+.sb-crumb () {
+	margin: 0;
+	padding: 0 @sb-crumb-side-padding 0 0;
+	.inline-block;
+	a {
+		text-decoration: @sb-crumb-link-decor;
+	}
+	&:hover a,
+	&:focus a {
+		text-decoration: @sb-crumb-link-decor-hover;
+		color: @sb-crumb-font-color-hover;
+	}
+
+	a,
+	span {
+		font-size: @sb-crumb-font-size;
+		padding: @sb-crumb-side-padding;
+		text-transform: @sb-crumb-font-transform;
+		color: @sb-crumb-font-color;
+	}
+
+	&.current {
+		a {
+			cursor: default;
+			color: @sb-crumb-font-color-current;
+			text-decoration: none;
+		}
+
+		&:hover a,
+		&:focus a { text-decoration: none; }
+	}
+
+	&.unavailable {
+		a { color: @sb-crumb-font-color-unaivalable; }
+		text-decoration: none;
+		&:hover a,
+		a:focus {
+			text-decoration: none;
+			color: @sb-crumb-font-color-unaivalable;
+			cursor: default;
+		}
+	}
+
+	&:before {
+		content: "@{sb-crumb-slash}";
+		color: @sb-crumb-slash-color;
+		font-family: @sb-crumb-slash-font-family;
+		position: relative;
+		top: 1px;
+	}
+
+	&:first-child:before { content: " "; }
+}

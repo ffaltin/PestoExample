@@ -19,4 +19,5 @@ $loader->addNamespace( 'Pesto',            $vendorPath.'/pesto/src'   );
 $loader->addNamespace( 'App',              __dir__ .'/src' );
 
 $loader->addCustom( ':^MobileDetect:', $vendorPath.'/mobiledetect'         );
+$loader->addCustom( ':^Requests:', $vendorPath.'/Requests/src'         );
 $loader->register();

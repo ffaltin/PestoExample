@@ -1,0 +1,44 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import "params.global.less";
+// include functions
+.include (@value) when (@sb-use-normalize = true) and (@value = normalize) {
+	@import "includes/normalize.less";
+}
+// include functions
+.include (@value) when (@sb-use-reset = true) and (@value = reset) {
+	@import "includes/reset.less";
+}
+// init the include
+.include(normalize);
+.include(reset);
+/* Mixin function -------------------------------------- */
+@import "fix/fix.ie7.less";
+@import "includes/up.less";
+/* Import plugins  ------------------------------- */
+@import "plugins/sidr.less";
+@import "plugins/accordions.less";
+@import "plugins/utabs.less";
+@import "plugins/tooltip.less";
+/* Import components  ------------------------------- */
+@import "components/utilitaries.less";
+@import "components/rendering.less";
+@import "components/miscellaneous.less";
+@import "components/buttons.less";

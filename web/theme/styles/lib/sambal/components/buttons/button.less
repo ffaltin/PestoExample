@@ -1,0 +1,141 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ 
+.sb-button-constructor (
+	@background,
+	@color,
+	@background-hover,
+	@color-hover,
+) {
+	&, &:visited {
+		// .transition;
+		display: inline-block;
+		.fixIe7(display,inline-block);
+		text-decoration: none;
+		background: @background;
+		color: @color;
+		&:hover, &:focus, &.current {
+			background: @background-hover;
+			color: @color-hover;
+		}
+	}
+}
+
+// Add -style function
+.sb-add-styleToButton(@type,@value,@hover) when (@type="border") {
+	& {border: @value;}
+	&:hover, &:focus { border: @hover}
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="background") {
+	& {background: @value;}
+	&:hover, &:focus { background: @hover}
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="color") {
+	& {color: @value;}
+	&:hover, &:focus { color: @hover}
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="text-decoration") {
+	& {text-decoration: @value;}
+	&:hover, &:focus { text-decoration: @hover }
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="font-size") {
+	& {font-size: @value;}
+	&:hover, &:focus { font-size: @hover }
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="padding") {
+	& {padding: @value;}
+	&:hover, &:focus { padding: @hover }
+}
+
+.sb-add-styleToButton(@type,@value,@hover) when (@type="border-radius") {
+	& {.border-radius(@value);}
+	&:hover, &:focus { .border-radius(@hover); }
+}
+ //
+.sb-button (@type,@color,@bg-hover,@color-hover) when (@type = "custom") {
+	.sb-button-constructor(@type,@color,@bg-hover,@color-hover);
+}
+ 
+.sb-button (@type:"base") when (@type = "base") {
+	.sb-button-constructor(@sb-button-background,@sb-button-color,@sb-button-background-hover,@sb-button-color-hover);
+	.sb-add-styleToButton("border",@sb-button-border,@sb-button-border-hover);
+	.sb-add-styleToButton("font-size",@sb-button-font-size,@sb-button-font-size-hover);
+	.sb-add-styleToButton("padding",@sb-button-padding,@sb-button-padding-hover);
+}
+
+.sb-button(@type) when (@type="classic") {
+	.sb-button("base");
+	margin-right: 0.4em;
+	.sb-add-styleToButton("border-radius",@sb-button-default-radius,@sb-button-default-radius);
+}
+
+.sb-button(@type) when (@type = "inverted") {
+	.sb-button("classic");
+	&, &:visited {
+		background: @sb-button-background-hover;
+		color: @sb-button-color-hover;
+		border: @sb-button-border-hover;
+		&:hover, &.current {
+			background: @sb-button-background;
+			color: @sb-button-color;
+			border: @sb-button-border;
+		}
+	}
+}
+
+.sb-button(@type) when (@type = "secondary") {
+	.sb-button("classic");
+	&, &:visited {
+		background: @sb-button-secondary-background;
+		color: @sb-button-secondary-color;
+		border: @sb-button-secondary-border;
+		&:hover, &.current {
+			background: @sb-button-secondary-background-hover;
+			color: @sb-button-secondary-color-hover;
+			border: @sb-button-secondary-border-hover;
+		}
+	}
+}
+
+.sb-button(@type) when (@type = "error") {
+	.sb-button("classic");
+	&, &:visited {
+		background: @sb-button-error-background;
+		color: @sb-button-error-color;
+		border: @sb-button-error-border;
+		&:hover, &.current {
+			background: @sb-button-error-background-hover;
+			color: @sb-button-error-color-hover;
+			border: @sb-button-error-border-hover;
+		}
+	}
+}
+
+.sb-button(@type) when (@type = "next") {
+	.sb-button("classic");
+	&:after {
+		content: " »";
+	}
+}

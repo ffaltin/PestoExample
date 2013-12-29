@@ -1,0 +1,72 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Global parameters ------------------------------- */
+	@sb-nb-columns: 12;
+	@sb-main-width: 960px; 
+	@sb-min-large-width: 768px;
+	@sb-min-medium-width: 500px;
+	
+	@sb-primary-color: #F15D58;
+	@sb-secondary-color: #414042;
+	@sb-base-font-size: 16; // Use for typography rem only
+	@sb-active-color: lighten(@sb-primary-color,10%);
+	
+	@sb-default-radius-border: 0px;
+	
+	/* Helpers for media queries */
+	@screen-mobile-portrait:  ~"screen and (max-device-width: 480px) and (orientation: portrait)";
+	@screen-mobile-landscape: ~"screen and (max-device-width: 640px) and (orientation: landscape)";
+	@screen-mobile:           ~"screen and (max-device-width: 640px)";
+	@screen-tablet:           ~"screen and (min-device-width: 768px) and (max-device-width: 1024px)";
+	@screen-desktop-small:    ~"screen and (min-width: 1024px) and (max-width: 1440px)";
+	@screen-desktop-medium:   ~"screen and (min-width: 1441px) and (max-width: 1920px)";
+	@screen-desktop-large:    ~"screen and (min-width: 1921px)";
+	@screen-desktop:          ~"screen and (min-width: 1024px)";
+	
+/* Used to calculate the size width for grid.less */
+	@sb-base-width: 100%;
+
+/* conditionnal params ---------------------------- */
+	@sb-msie7: false;
+	@sb-use-normalize: false;
+	@sb-use-reset: false;
+	@sb-use-resize-transition: true;
+
+/* all about default plugins --------------------------- */
+	@sb-use-default-utabs-style: false;
+	@sb-use-default-accordion-style: false;
+	@sb-use-default-tooltip-style: false;
+
+/* all about default style --------------------------- */
+	@sb-use-default-table-style:false;
+	@sb-use-default-form-style:false;
+	@sb-use-default-tag-style:false;
+	@sb-use-default-breadcrum-style:false;
+	@sb-use-default-navigation-style:false;
+	@sb-use-default-sidr-navigation:false;
+	@sb-use-default-button-style:false;
+	@sb-use-default-pagination-style:false;
+	@sb-use-default-messaging-style:false;
+	@sb-use-default-class-name: false;
+	
+@import "params/button.less";
+@import "params/miscellaneous.less";
+@import "params/styles.less";
+@import "params/plugins.less";

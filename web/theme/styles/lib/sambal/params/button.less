@@ -1,0 +1,61 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Button component parameters ----------------------------------- */
+	@sb-button-default-radius: @sb-default-radius-border;
+	/* Basic ----------------------------------- */
+	@sb-button-background: @sb-primary-color;
+	@sb-button-padding: 3px 15px;
+	@sb-button-color: @sb-secondary-color;
+	@sb-button-border: none;
+	@sb-button-font-size: 1em;
+		/* -hover/current ----------------------------------- */
+		@sb-button-background-hover:@sb-secondary-color;
+		@sb-button-color-hover:@sb-primary-color;
+		@sb-button-border-hover:@sb-button-border;
+		@sb-button-font-size-hover:@sb-button-font-size;
+		@sb-button-padding-hover:@sb-button-padding;
+	
+	@sb-button-secondary-background: spin(@sb-primary-color,0);
+	@sb-button-secondary-color: spin(@sb-secondary-color,0);
+	@sb-button-secondary-border: 1px solid #dedede;
+	@sb-button-secondary-background-hover: spin(lighten(@sb-primary-color,20%),0);
+	@sb-button-secondary-color-hover: spin(lighten(@sb-secondary-color,20%),0);
+	@sb-button-secondary-border-hover: none;
+
+	@sb-button-error-background: lighten(rgba(250,20,20,0.4),10%);
+	@sb-button-error-color: lighten(rgba(184,4,4,0.7),10%);
+	@sb-button-error-border: 1px solid lighten(rgba(184,4,4,0.3),10%);
+	@sb-button-error-background-hover: rgba(250,20,20,0.4);
+	@sb-button-error-color-hover: rgba(184,4,4,0.7);
+	@sb-button-error-border-hover: 1px solid rgba(184,4,4,0.3);
+	
+	@sb-dropdown-arrow-color: #fff;
+	@sb-dropdown-arrow-size: 6px;
+	@sb-dropdown-arrowTop: 5px;
+	
+	@sb-dropdown-background: #f5f5f5;
+	@sb-dropdown-border: 1px solid #dedede;
+	@sb-dropdown-padding: 8px 0 5px 0;
+	@sb-dropdown-font-size: 1em;
+	
+	@sb-dropdown-btn-color: #444;
+	@sb-dropdown-btn-color-hover: #fff;
+	@sb-dropdown-btn-background-hover: @sb-primary-color;
+/* End Button component parameters ----------------------------------- */

@@ -1,0 +1,118 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+  
+ // Same identic structure
+.sb-composition (@type) when (@type="twins") {
+	> div, > section, > article {
+		.sb-width-all(5.8,12,12);
+		.sb-offset-left-all(0.4,0,0);
+		img { margin-bottom: 0.5em; }
+		&:first-child, &.first {
+			.sb-offset-left-all(0,0,0);
+		}
+	}
+	margin-bottom: 1em;
+}
+
+.sb-composition (@type) when (@type="triplets") {
+	> div, > section, > article {
+		.sb-width-all(3.7,12,12);
+		.sb-offset-left-all(0.3,0,0);
+		img { margin-bottom: 0.5em; }
+		&:first-child, .first {
+			.sb-offset-left-all(0,0,0);
+		}
+	}
+	margin-bottom: 1em;
+}
+
+.sb-composition (@type) when (@type="quadruplets") {
+	.sb-grid-horizontal-all(4,2,1);
+	.sb-offset-left-all(3%,3%,0);
+	margin-bottom: 1em;
+	img { margin-bottom: 0.5em; }
+}
+// Different sb-composition
+.sb-composition (@type) when (@type="one.two") {
+	> div, > section, > article {
+		img { margin-bottom: 0.5em; }
+		&:first-child {
+			.sb-width-all(4,12,12);
+			.sb-offset-left-all(0,0,0);
+		}
+		.sb-offset-left-all(0.5,0,0);
+		.sb-width-all(7.5,12,12);
+	}
+	margin-bottom: 1em;
+}
+
+.sb-composition (@type) when (@type="two.one") {
+	> div, > section, > article {
+		img { margin-bottom: 0.5em; }
+		&:first-child {
+			.sb-width-all(7.5,12,12);
+			.sb-offset-left-all(0,0,0);
+		}
+		.sb-width-all(4,12,12);
+		.sb-offset-left-all(0.5,0,0);
+	}
+	margin-bottom: 1em;
+}
+
+.sb-composition (@type) when (@type="one.three") {
+	> div, > section, > article {
+		img { margin-bottom: 0.5em; }
+		&:first-child {
+			.sb-width-all(3,12,12);
+			.sb-offset-left-all(0,0,0);
+		}
+		.sb-offset-left-all(0.5,0,0);
+		.sb-width-all(8.5,12,12);
+	}
+	margin-bottom: 1em;
+}
+
+.sb-composition (@type) when (@type="three.one") {
+	> div, > section, > article {
+		img { margin-bottom: 0.5em; }
+		&:first-child {
+			.sb-width-all(8.5,12,12);
+			.sb-offset-left-all(0,0,0);
+		}
+		.sb-width-all(3,12,12);
+		.sb-offset-left-all(0.5,0,0);
+	}
+	margin-bottom: 1em;
+}
+
+// set text columns
+.sb-texts-columns (@type) when (@type="one.half") {
+	.column-count(2);
+	.column-gap(25px);
+}
+
+.sb-texts-columns (@type) when (@type="one.third") {
+	.column-count(3);
+	.column-gap(25px);
+}
+
+.sb-texts-columns (@type) when (@type="one.fourth") {
+	.column-count(4);
+	.column-gap(25px);
+}

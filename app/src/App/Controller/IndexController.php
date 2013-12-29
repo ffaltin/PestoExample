@@ -1,17 +1,32 @@
 <?php
 
 	namespace App\Controller;
-	
-	class IndexController extends \Pesto\Handling\Controller {
-		
+
+	class IndexController extends \App\Handler {
+
+		protected $layouts = [
+			"layouts/base"
+		];
+
+		protected $addToLayoutsVars = [
+			"baseLayoutName" => "base",
+			"theme" => "desktop",
+			"appName" => "Pesto Application Sample",
+			"language" => "en"
+		];
+
 		public function helloAction($args) {
-			$v = $this->getRepo("person")->getOneBy("name","Mon bateau");
-			return $this->createView('public/hello',[
-				'hello' => "Hello database person: {$v->name}",
-			],[
-				'title' => 'External Controller',
+			$this->addToLayout([
+				"title" => "Hello",
+				"language"=>$this->getLanguage(),
 			]);
+			return $this->createResponse(
+				$this->getView('public/hello')
+				->assign([
+					'hello' => "Yop {$args->person}",
+				])
+				->render()
+			);
 		}
-		
 	}
 	

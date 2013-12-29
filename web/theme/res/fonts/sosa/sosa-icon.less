@@ -1,0 +1,57 @@
+@sosaIconColor: #fff;
+@sosaIconColorHover: #fc6902;
+@sosaIconFontSize: 1.8em;
+
+.sosaIconBase () {
+	.transition;
+	font-family: "Sosa";
+	color: @sosaIconColor;
+	text-decoration: none;
+	font-size: @sosaIconFontSize;
+	&:hover {
+		color: @sosaIconColorHover;
+	}
+}
+
+.sosaIcon (@type) when (@type = "android") {
+	.sosaIconBase();
+	&:after { content: "ă"; }
+}
+
+.sosaIcon (@type) when (@type = "twitter") {
+	.sosaIconBase();
+	&:after { content: "t"; }
+}
+
+.sosaIcon (@type) when (@type = "facebook") {
+	.sosaIconBase();
+	&:after { content: "v"; }
+}
+
+.sosaIcon (@type) when (@type = "apple") {
+	.sosaIconBase();
+	&:after { content: "Ă"; }
+}
+
+.sosaIcon (@type) when (@type = "linkedin") {
+	.sosaIconBase();
+	&:after { content: "ļ"; }
+}
+
+.sosaIcon (@type) when (@type = "googleplus") {
+	.sosaIconBase();
+	&:after { content: "Ć"; }
+}
+
+.sosaIcon (@type) when (@type = "pointer") {
+	.sosaIconBase();
+	&:after { content: "o"; }
+}
+
+.sosaIcon (@type) when (@type = "youtube") {
+	.sosaIconBase();
+	font-size: @sosaIconFontSize*1.5;
+	line-height: @sosaIconFontSize/1.5;
+	&:after { content: "Ĵ"; }
+}
+

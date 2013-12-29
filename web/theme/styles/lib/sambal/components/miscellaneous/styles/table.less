@@ -1,0 +1,228 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* -tables ---------------------- */
+.sb-table-constructor (
+	@background: @sb-table-background;
+	@border-radius:@sb-table-border-radius;
+	@textAlign: @sb-table-text-align;
+	@font-size: @sb-table-font-size;
+	@border:@sb-table-border;
+	@margin:@sb-table-margin;
+	// tHead
+	@thead-valign: @sb-table-thead-valign;
+	@thead-background: @sb-table-thead-background;
+	@thead-padding: @sb-table-thead-padding;
+	@thead-text-align: @sb-table-thead-text-align;
+	@thead-font-size: @sb-table-thead-font-size;
+	@thead-color: @sb-table-thead-color;
+	@thead-font-weight: @sb-table-thead-font-weight;
+	// tBody
+	@tbody-background: @sb-table-tbody-background;
+	@tbody-tr-even-background: @sb-table-tbody-tr-even-background;
+	@tbody-td-color: @sb-table-tbody-td-color;
+	@tbody-padding: @sb-table-tbody-padding;
+	@tbody-valign: @sb-table-tbody-valign;
+	@tbody-font-weight: @sb-table-tbody-font-weight;
+	@tbody-text-align: @sb-table-tbody-text-align;
+) {
+	/* General style ---------------------- */
+	.border-radius(@border-radius);
+	background: @background; 
+	margin: @margin; 
+	border: @border;
+	
+	/* General thead|tfoot|tbody style ---------------------- */
+	thead, tfoot, tbody {
+		background: @thead-background;
+		tr {
+			th, td {
+				display: table-cell;
+				font-size: @font-size;
+				text-align: @textAlign;
+			}
+		}
+	}
+	/* Particular style thead|tfoot ---------------------- */
+	thead, tfoot {
+		tr {
+			th, td {
+				padding: @thead-padding;
+				font-size: @thead-font-size;
+				color: @thead-color;
+				font-weight: @thead-font-weight;
+				text-align: @thead-text-align;
+				vertical-align: @thead-valign;
+				&:first-child {
+					border-left: none;
+				}
+				&:last-child {
+					border-right: none;
+				}
+			}
+		}
+	}
+	/* Particular style tbody ---------------------- */
+	tbody {
+		background: @sb-table-tbody-background;
+		tr {
+			&.even, &.alt, &:nth-child(even) {
+				background: @tbody-tr-even-background;
+			}
+			td {
+				color: @tbody-td-color;
+				padding: @tbody-padding;
+				vertical-align: @tbody-valign;
+				font-weight: @tbody-font-weight;
+				text-align: @tbody-text-align;
+				border: none;
+			}
+		}
+	}
+}
+
+// Give more style to tr/td elements ;)
+.sb-table-add-style (
+	@type;
+	@tbody-background-success: @sb-table-tbody-background-success;
+	@tbody-color-success: @sb-table-tbody-color-success;
+	@tbody-background-warning: @sb-table-tbody-background-warning;
+	@tbody-color-warning: @sb-table-tbody-color-warning;
+	@tbody-background-danger: @sb-table-tbody-background-danger;
+	@tbody-color-danger: @sb-table-tbody-color-danger;
+) when (@type="stated") {
+	tbody {
+		tr {
+			&.success {
+				background: @tbody-background-success;
+				color: @tbody-color-success;
+				td {
+					background: @tbody-background-success;
+					color: @tbody-color-success;
+				}
+				&:hover {
+					background: darken(@tbody-background-success,5%);
+					color: darken(@tbody-color-success,5%);
+					td {
+						background: darken(@tbody-background-success,5%);
+						color: darken(@tbody-color-success,5%);
+					}
+				}
+			}
+			&.warning {
+				background: @tbody-background-warning;
+				color: @tbody-color-warning;
+				td {
+					background: @tbody-background-warning;
+					color: @tbody-color-warning;
+				}
+				&:hover {
+					background: darken(@tbody-background-warning,5%);
+					color: darken(@tbody-color-warning,5%);
+					td {
+						background: darken(@tbody-background-warning,5%);
+						color: darken(@tbody-color-warning,5%);
+					}
+				}
+			}
+			&.danger {
+				background: @tbody-background-danger;
+				color: @tbody-color-danger;
+				td {
+					background: @tbody-background-danger;
+					color: @tbody-color-danger;
+				}
+				&:hover {
+					background: darken(@tbody-background-danger,5%);
+					color: darken(@tbody-color-danger,5%);
+					td {
+						background: darken(@tbody-background-danger,5%);
+						color: darken(@tbody-color-danger,5%);
+					}
+				}
+			}
+		}
+	}
+}
+
+// Design for the hover statement
+.sb-table-add-style (
+	@type;
+	@tbody-border-hover: @sb-table-tbody-border-hover;
+	@tbody-background-hover: @sb-table-tbody-background-hover;
+	@tbody-background-color: @sb-table-tbody-background-color;
+) when (@type="hovered") {
+	tbody {
+		tr {
+			&:hover {
+				background: @tbody-background-hover;
+				color: @tbody-background-color;
+				td {
+					background: @tbody-background-hover;
+					color: @tbody-background-color;
+					border-bottom: @tbody-border-hover;
+					border-left: @tbody-border-hover;
+				}
+			}
+		}
+	}
+}
+
+// Play with the width
+.sb-table-add-style (@type) when (@type="full-width") {
+	width: 100%;
+	max-width: 100%;
+	@media only screen and (max-width: @sb-min-large-width) {
+		width: 98%;
+		max-width: 98%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+// Add border to table
+.sb-table-add-style (
+	@type;
+	@thead-border: @sb-table-thead-border;
+	@tbody-border: @sb-table-tbody-border;
+	@tbody-border-hover: @sb-table-tbody-border-hover;
+) when (@type="bordered") {
+	thead {
+		tr {
+			th, td {
+				border-bottom: @thead-border;
+				border-left: @thead-border;
+				&:first-child {
+					border-left: none;
+				}
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				border-bottom: @tbody-border;
+				border-left: @tbody-border;
+				&:first-child {
+					border-left: none;
+				}
+			}
+		}
+	}
+}

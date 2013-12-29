@@ -1,0 +1,103 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sb-user-select (@type:"none",@cursor: "default") {
+	-webkit-user-select: @type;  /* Chrome all / Safari all */
+	-moz-user-select: @type;     /* Firefox all */
+	-ms-user-select: @type;      /* IE 10+ */
+	cursor: @cursor;
+	/* No support for these yet, use at own risk */
+	-o-user-select: @type;
+	user-select: @type; 
+}
+
+.sb-selection (@bg:@sb-primary-color;@color:@sb-secondary-color) {
+	::selection {
+		background: @bg;
+		color: @color;
+	}
+	::-moz-selection {
+		background: @bg;
+		color: @color;
+	}
+}
+
+.sb-placeholder (@size:"inherit",@color:"#ddd",@style:"normal",@weight:"normal",@family:"inherit") {
+	::-webkit-input-placeholder {
+		font-style: @style;
+		font-family: @family;
+		font-weight: @weight;
+		font-size: @size;
+		color: @color;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+		font-style: @style;
+		font-family: @family;
+		font-weight: @weight;
+		font-size: @size;
+		color: @color;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+		font-style: @style;
+		font-family: @family;
+		font-weight: @weight;
+		font-size: @size;
+		color: @color;
+	}
+
+	:-ms-input-placeholder {  
+		font-style: @style;
+		font-family: @family;
+		font-weight: @weight;
+		font-size: @size;
+		color: @color;
+	}
+}
+
+.sb-image-replacement () {
+	border: 0;
+	overflow: hidden;
+	text-shadow: none;
+	background-color: transparent;
+	*text-indent: -9999px;
+	&:before {
+		content: "";
+		display: block; 
+		width: 0; 
+		height: 100%;
+	}
+}
+
+.sb-seo-helper () {
+	img:not([alt]), img[alt=""], img[alt^=" "],
+	a[href=""], a[href^=" "], a[href="#"], a[rel*="nofollow"],
+	div:empty, span:empty, li:empty, p:empty, td:empty, th:empty,
+	*[title=""], *[class=""], *[id=""] {
+		outline: 2px solid red !important;
+		outline-offset: 3px !important;
+	}
+	head, title:empty, link, meta {display: block;}
+	title:empty:before {content: "You've left the <title> empty!"}
+	link:before {content: "You don't have a <title>!"}
+	title ~ link {display: none;}
+	meta[name="description"][content=""]:before, meta[name="description"][content=" "]:before {content: "You've left description empty!";}
+}
+	

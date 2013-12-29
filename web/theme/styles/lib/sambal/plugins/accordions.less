@@ -1,0 +1,124 @@
+.sb-accordion-constructor (
+	// tab header -styles
+	@tab-header-text-align:@sb-accordion-tab-header-text-align,
+	@tab-header-font-weight:@sb-accordion-tab-header-font-weight,
+	@tab-header-padding: @sb-accordion-tab-header-padding,
+	@tab-header-margin: @sb-accordion-tab-header-margin,
+	@tab-headerBg:@sb-accordion-tab-header-background,
+	@tab-headerBg-hover:@sb-accordion-tab-header-background-hover,
+	@tab-headerBg-current:@sb-accordion-tab-header-background-current,
+	@tab-header-text-color:@sb-accordion-tab-header-text-color,
+	@tab-header-font-size:@sb-accordion-tab-header-font-size,
+	@tab-header-line-height:@sb-accordion-tab-header-line-height,
+	@tab-header-text-color-hover:@sb-accordion-tab-header-text-color-hover,
+	@tab-header-line-height-hover:@sb-accordion-tab-header-line-height-hover,
+	@tab-header-font-size-hover:@sb-accordion-tab-header-font-size-hover,
+	@tab-header-text-color-current:@sb-accordion-tab-header-text-color-current,
+	@tab-header-line-height-current:@sb-accordion-tab-header-line-height-current,
+	@tab-header-font-size-current:@sb-accordion-tab-header-font-size-current,
+	// -tab header -before styles
+	@tab-header-before-text-align:@sb-accordion-tab-header-before-text-align,
+	@tab-header-before-margin:@sb-accordion-tab-header-before-margin,
+	@tab-header-before-height:@sb-accordion-tab-header-before-height,
+	@tab-header-before-width:@sb-accordion-tab-header-before-width,
+	@tab-header-beforeTop: @sb-accordion-tab-header-beforeTop,
+	@tab-header-before-content: @sb-accordion-tab-header-before-content,
+	@tab-header-before-content-hover: @sb-accordion-tab-header-before-content-hover,
+	@tab-header-before-content-current: @sb-accordion-tab-header-before-content-current,
+	@tab-header-beforeBg:@sb-accordion-tab-header-before-background,
+	@tab-header-beforeBg-hover:@sb-accordion-tab-header-before-background-hover,
+	@tab-header-beforeBg-current:@sb-accordion-tab-header-before-background-current,
+	@tab-header-before-text-color:@sb-accordion-tab-header-before-text-color,
+	@tab-header-before-font-size:@sb-accordion-tab-header-before-font-size,
+	@tab-header-before-line-height:@sb-accordion-tab-header-before-line-height,
+	@tab-header-before-text-color-hover:@sb-accordion-tab-header-before-text-color-hover,
+	@tab-header-before-line-height-hover:@sb-accordion-tab-header-before-line-height-hover,
+	@tab-header-before-font-size-hover:@sb-accordion-tab-header-before-font-size-hover,
+	@tab-header-before-text-color-current:@sb-accordion-tab-header-before-text-color-current,
+	@tab-header-before-line-height-current:@sb-accordion-tab-header-before-line-height-current,
+	@tab-header-before-font-size-current:@sb-accordion-tab-header-before-font-size-current,
+	// -tab content styles
+	@tab-content-font-weight:@sb-accordion-tab-content-font-weight,
+	@tab-contentBg: @sb-accordion-tab-content-background,
+	@tab-content-text-color: @sb-accordion-tab-content-text-color,
+	@tab-content-font-size: @sb-accordion-tab-content-font-size,
+	@tab-content-line-height: @sb-accordion-tab-content-line-height,
+	@tab-content-padding: @sb-accordion-tab-content-padding,
+	@tab-content-margin: @sb-accordion-tab-content-margin,
+) {
+	> * {
+		display: none;
+	}
+	.tab-header {
+		display: block;
+		cursor: pointer;
+		padding: @tab-header-padding;
+		margin: @tab-header-margin;
+		background: @tab-headerBg;
+		color: @tab-header-text-color;
+		line-height: @tab-header-line-height;
+		font-size: @tab-header-font-size;
+		text-align: @tab-header-text-align;
+		font-weight: @tab-header-font-weight;
+		&:before {
+			content: @tab-header-before-content;
+			text-align: @tab-header-before-text-align;
+			margin: @tab-header-before-margin;
+			background: @tab-header-beforeBg;
+			color: @tab-header-before-text-color;
+			font-size: @tab-header-before-font-size;
+			line-height: @tab-header-before-line-height;
+			height: @tab-header-before-height;
+			width: @tab-header-before-width;
+			top: @tab-header-beforeTop;
+			display: inline-block;
+			position: relative;
+		}
+		&:hover {
+			background: @tab-headerBg-hover;
+			color: @tab-header-text-color-hover;
+			line-height: @tab-header-line-height-hover;
+			font-size: @tab-header-font-size-hover;
+			&:before {
+				content: @tab-header-before-content-hover;
+				background: @tab-header-beforeBg-hover;
+				color: @tab-header-before-text-color-hover;
+				line-height: @tab-header-before-line-height-hover;
+				font-size: @tab-header-before-font-size-hover;
+			}
+		}
+		&.current {
+			background: @tab-headerBg-current;
+			color: @tab-header-text-color-current;
+			line-height: @tab-header-line-height-current;
+			font-size: @tab-header-font-size-current;
+			&:before {
+				content: @tab-header-before-content-current;
+				background: @tab-header-beforeBg-current;
+				color: @tab-header-before-text-color-current;
+				line-height: @tab-header-before-line-height-current;
+				font-size: @tab-header-before-font-size-current;
+			}
+		}
+	}
+	.tab-content {
+		font-weight: @tab-content-font-weight;
+		margin: @tab-content-margin;
+		padding: @tab-content-padding;
+		color: @tab-content-text-color;
+		background: @tab-contentBg;
+		font-size: @tab-content-font-size;
+		line-height: @tab-content-line-height;
+	}
+}
+
+
+
+.default-accordion-style(@arg) when (@arg = true) {	
+	*[data-element="accordion"] {
+		.sb-accordion-constructor();
+	}
+}
+
+// active or not the default style
+.default-accordion-style(@sb-use-default-accordion-style);

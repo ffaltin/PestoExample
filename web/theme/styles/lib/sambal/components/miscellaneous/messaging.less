@@ -1,0 +1,104 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+	-messaging component
+*/
+.sb-message-constructor () {
+	.border-radius(@sb-messaging-border-radius-style);
+	border: 1px solid transparent;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0.5em 1em;
+	font-size: 0.9em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	@media only screen and (max-width: @sb-min-large-width) {
+		text-align: center;
+	}
+}
+
+.sb-message (@type) when (@type = "success") {
+	.sb-message-constructor;
+	background-color: @sb-messaging-background-success;
+	border-color: @sb-messaging-border-success;
+	color: @sb-messaging-color-success;
+}
+
+.sb-message (@type) when (@type = "error") {
+	.sb-message-constructor;
+	background-color: @sb-messaging-background-error;
+	border-color: @sb-messaging-border-error;
+	color: @sb-messaging-color-error;
+}
+
+.sb-message (@type) when (@type = "warning") {
+	.sb-message-constructor;
+	background-color: @sb-messaging-background-warning;
+	border-color: @sb-messaging-border-warning;
+	color: @sb-messaging-color-warning;
+}
+
+.sb-message (@type) when (@type = "information") {
+	.sb-message-constructor;
+	background-color: @sb-messaging-background-information;
+	border-color: @sb-messaging-border-information;
+	color: @sb-messaging-color-information;
+}
+// Alert messaging
+.sb-alert-constructor() {
+	.sb-message-constructor;
+	.border-radius(0);
+	padding: 1em;
+	margin: 0;
+	border: none;
+	border-bottom: 1px solid;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+}
+
+.sb-alert(@type) when (@type = "success") {
+	.sb-alert-constructor;
+	background-color: @sb-messaging-background-success;
+	border-color: @sb-messaging-border-success;
+	color: @sb-messaging-color-success;
+}
+
+.sb-alert(@type) when (@type = "error") {
+	.sb-alert-constructor;
+	background-color: @sb-messaging-background-error;
+	border-color: @sb-messaging-border-error;
+	color: @sb-messaging-color-warning;
+}
+
+.sb-alert(@type) when (@type = "warning") {
+	.sb-alert-constructor;
+	background-color: @sb-messaging-background-warning;
+	border-color: @sb-messaging-border-warning;
+	color: @sb-messaging-color-warning;
+}
+
+.sb-alert(@type) when (@type = "information") {
+	.sb-alert-constructor;
+	background-color: @sb-messaging-background-information;
+	border-color: @sb-messaging-border-information;
+	color: @sb-messaging-color-information;
+}
+

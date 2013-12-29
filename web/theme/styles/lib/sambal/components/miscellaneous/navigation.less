@@ -1,0 +1,142 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sb-navigation () {
+	.transition;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: block;
+	margin-bottom: 0;
+	background: @sb-menu-background;
+	> li {
+		display: inline-block;
+		.fixIe7(display,inline-block);
+		vertical-align: top;
+		a, a:visited {
+			background: @sb-menu-btn-background;
+			display: block;
+			padding: @sb-menu-btn-padding;
+			text-decoration: none;
+			color: @sb-menu-btn-color;
+			width: 100%;
+			&:hover, &:focus{
+				color: @sb-menu-btn-color-hover;
+				background: @sb-menu-btn-background-hover;
+			}
+			&.active {
+				&, &:hover, &:focus {
+					color: @sb-menu-btn-color-current;
+					color: @sb-menu-btn-background-current;
+				}
+			}
+		}
+		> ul {
+			.transition;
+			display: none;
+			position: absolute;
+			z-index: 1000;
+			padding: 0;
+			margin: 0;
+		}
+		&.current {
+			a, a:visited, & {
+				color: @sb-menu-btn-color-hover;
+				background: @sb-menu-btn-background-hover;
+			}
+		}
+		&:hover, &:focus {
+			a, a:visited, & {
+				color: @sb-menu-btn-color-hover;
+				background: @sb-menu-btn-background-hover;
+			}
+			> ul {
+				display: block;
+				background: @sb-menu-2nd-background;
+				 > li {
+					display: block;
+					width: 100%;
+					background: @sb-menu-2nd-background;
+					a, a:visited {
+						color: @sb-menu-2nd-btn-color;
+						background: @sb-menu-2nd-btn-background;
+						&:hover, &:focus{
+							color: @sb-menu-2nd-btn-color-hover;
+							background: @sb-menu-2nd-btn-background-hover;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// set default Navigation -style
+.default-navigation-style(@arg,@sb-useSidr) when (@arg = true) and (@sb-useSidr = true) {	
+	@media only screen and (max-width: @sb-min-large-width) {
+		.js #navigation {
+			display: none;
+		}
+	}
+
+	.sidr {
+		.sidrObject();
+		> .sidr-inner > nav > ul { display: block; }
+	}
+	
+	#sidr-menu {
+		display: none;
+		text-align: right;
+		 @media only screen and (max-width: @sb-min-large-width) {
+			.sb-width(3);
+		 }
+		.responsive-menu-icon {
+			font-size: 1.8em;
+			background: @sb-menu-btn-background;
+			color: @sb-menu-btn-color;
+			&:hover, &:focus{
+				color: @sb-menu-btn-color-hover;
+				background: @sb-menu-btn-background-hover;
+			}
+		}
+	}
+	
+	@media only screen and (max-width: @sb-min-large-width) {
+		.js nav[role="navigation"] > ul {
+			display: none;
+		}
+	}
+	
+	nav > ul {
+		.sb-navigation();
+	}
+	
+}
+
+
+// set default Navigation -style
+.default-navigation-style(@arg,@sb-useSidr) when (@arg = true) and (@sb-useSidr = false) {
+	nav > ul {
+		.sb-navigation();
+	}
+}
+
+// active or not the default style
+.default-navigation-style(@sb-use-default-navigation-style,@sb-use-default-sidr-navigation);
+

@@ -1,0 +1,277 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ****************************************************************************************** */
+/* *******************************************************  */
+/* ** -paddings, manipulate all padding values with one mixin */
+/* *******************************************************  */
+	.sb-paddings (@top,@right,@bottom,@left,@query:"regular") when (@query="regular") {
+		padding-top: @min * @top;
+		padding-right: @min * @right;
+		padding-bottom: @min * @bottom;
+		padding-left: @min * @left;
+	}
+
+	.sb-paddings (@top,@right,@bottom,@left,@query) when (@query="medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-paddings(@top,@right,@bottom,@left); }
+	}
+
+	.sb-paddings (@top,@right,@bottom,@left,@query) when (@query="small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-paddings(@top,@right,@bottom,@left); }
+	}
+
+	.sb-paddings (@top,@right,@bottom,@left,@query) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+		@media @query { .sb-paddings(@top,@right,@bottom,@left); }
+	}
+
+/* *******************************************************  */
+/* ** -padding for each element */
+/* *******************************************************  */
+
+.sb-padding (@value,@type,@query:"regular") when (@type="top") and (@query="regular") {
+	padding-top: @min * @value; 
+}
+
+.sb-padding (@value,@type,@query:"regular") when (@type="right") and (@query="regular") {
+	padding-right: @min * @value; 
+}
+
+.sb-padding (@value,@type,@query:"regular") when (@type="bottom") and (@query="regular") {
+	padding-bottom: @min * @value; 
+}
+
+.sb-padding (@value,@type,@query:"regular") when (@type="left") and (@query="regular") {
+	padding-left: @min * @value; 
+}
+
+.sb-padding (@value,@type,@query) when (@query="medium") {
+	@media only screen and (max-width: @sb-min-large-width) { .sb-padding(@value,@type); }
+}
+
+.sb-padding (@value,@type,@query) when (@query="small") {
+	@media only screen and (max-width: @sb-min-medium-width) { .sb-padding(@value,@type); }
+}
+
+.sb-padding (@value,@type,@query) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+	@media @query { .sb-padding(@value,@type); }
+}
+
+.sb-padding-top (@value,@query:"regular") { .sb-padding(@value,"top",@query); }
+.sb-padding-right (@value,@query:"regular") { .sb-padding(@value,"right",@query); }
+.sb-padding-bottom (@value,@query:"regular") { .sb-padding(@value,"bottom",@query); }
+.sb-padding-left (@value,@query:"regular") { .sb-padding(@value,"left",@query); }
+
+
+/* ****************************************************************************************** */
+
+/* *******************************************************  */
+/* ** -margins, manipulate all margin values with one mixin */
+/* *******************************************************  */
+.sb-margins (@top,@right,@bottom,@left,@query:"regular") when (isnumber(@top)) and (@query="regular") {
+	padding-top: @min * @top;
+	padding-right: @min * @right;
+	padding-bottom: @min * @bottom;
+	padding-left: @min * @left;
+}
+
+.sb-margins (@top,@right,@bottom,@left,@query:"regular") when (ispixel(@top)) and (@query="regular") {
+	padding-top: @top;
+	padding-right: @right;
+	padding-bottom: @bottom;
+	padding-left: @left;
+}
+
+.sb-margins (@top,@right,@bottom,@left,@query:"regular") when (ispercentage(@top)) and (@query="regular") {
+	padding-top: @top;
+	padding-right: @right;
+	padding-bottom: @bottom;
+	padding-left: @left;
+}
+
+.sb-margins (@top,@right,@bottom,@left,@query) when (@query="medium") {
+	@media only screen and (max-width: @sb-min-large-width) { .sb-margins(@top,@right,@bottom,@left); }
+}
+
+.sb-margins (@top,@right,@bottom,@left,@query) when (@query="small") {
+	@media only screen and (max-width: @sb-min-medium-width) { .sb-margins(@top,@right,@bottom,@left); }
+}
+
+.sb-margins (@top,@right,@bottom,@left,@query) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+	@media @query { .sb-margins(@top,@right,@bottom,@left); }
+}
+
+/* *******************************************************  */
+/* ** -margin for each element */
+/* *******************************************************  */
+
+.sb-margin (@value,@type,@query:"regular") when (isnumber(@value)) and (@type="top") and (@query="regular") {
+	margin-top: @min * @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (isnumber(@value)) and (@type="right") and (@query="regular") {
+	margin-right: @min * @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (isnumber(@value)) and (@type="bottom") and (@query="regular") {
+	margin-bottom: @min * @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (isnumber(@value)) and (@type="left") and (@query="regular") {
+	margin-left: @min * @value; 
+}
+
+// Pixel style
+.sb-margin (@value,@type,@query:"regular") when (ispixel(@value)) and (@type="top") and (@query="regular") {
+	margin-top: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispixel(@value)) and (@type="right") and (@query="regular") {
+	margin-right: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispixel(@value)) and (@type="bottom") and (@query="regular") {
+	margin-bottom: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispixel(@value)) and (@type="left") and (@query="regular") {
+	margin-left: @value; 
+}
+
+// Pixel style
+.sb-margin (@value,@type,@query:"regular") when (ispercentage(@value)) and (@type="top") and (@query="regular") {
+	margin-top: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispercentage(@value)) and (@type="right") and (@query="regular") {
+	margin-right: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispercentage(@value)) and (@type="bottom") and (@query="regular") {
+	margin-bottom: @value; 
+}
+
+.sb-margin (@value,@type,@query:"regular") when (ispercentage(@value)) and (@type="left") and (@query="regular") {
+	margin-left: @value; 
+}
+
+.sb-margin (@value,@type,@query) when (@query="medium") {
+	@media only screen and (max-width: @sb-min-large-width) { .sb-margin(@value,@type); }
+}
+
+.sb-margin (@value,@type,@query) when (@query="small") {
+	@media only screen and (max-width: @sb-min-medium-width) { .sb-margin(@value,@type); }
+}
+
+.sb-margin (@value,@type,@query) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+	@media @query { .sb-margin(@value,@type); }
+}
+
+.sb-margin-top (@value,@query:"regular") { .sb-margin(@value,"top",@query); }
+.sb-margin-right (@value,@query:"regular") { .sb-margin(@value,"right",@query); }
+.sb-margin-bottom (@value,@query:"regular") { .sb-margin(@value,"bottom",@query); }
+.sb-margin-left (@value,@query:"regular") { .sb-margin(@value,"left",@query); }
+
+.sb-offset-top (@value,@query:"regular") { .sb-margin(@value,"top",@query); }
+.sb-offset-bottom (@value,@query:"regular") { .sb-margin(@value,"bottom",@query); }
+.sb-offset-left (@value,@query:"regular") { .sb-margin(@value,"left",@query); }
+.sb-offset-right (@value,@query:"regular") { .sb-margin(@value,"right",@query); }
+
+.sb-offset-left-all (@full,@medium,@small) {
+	.sb-margin(@full,"left");
+	.sb-margin(@medium,"left","medium");
+	.sb-margin(@small,"left","small");
+}
+
+.sb-offset-top-all (@full,@medium,@small) {
+	.sb-margin(@full,"top");
+	.sb-margin(@medium,"top","medium");
+	.sb-margin(@small,"top","small");
+}
+
+.sb-offset-bottom-all (@full,@medium,@small) {
+	.sb-margin(@full,"bottom");
+	.sb-margin(@medium,"bottom","medium");
+	.sb-margin(@small,"bottom","small");
+}
+
+.sb-offset-right-all (@full,@medium,@small) {
+	.sb-margin(@full,"right");
+	.sb-margin(@medium,"right","medium");
+	.sb-margin(@small,"right","small");
+}
+
+/* *******************************************************  */
+/* ** Movement for each element */
+/* *******************************************************  */
+
+/* *********************************************************** */
+// move block to right
+.sb-push (@index,@query:"regular") when (@index < @sb-nb-columns) and (@query="regular") {
+	left: @min*@index;
+}
+
+/* *******************************************************  */
+/* ** Responsive helpers */
+/* *******************************************************  */
+
+	.sb-push (@index,@query) when (@query = "medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-push(@index); }
+	}
+
+	.sb-push (@index,@query) when (@query="small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-push(@index); }
+	}
+	
+	.sb-push (@index,@query) when not (@query = "regular") and not (@query="medium") and not (@query="small") {
+		@media @query { .sb-push(@index); }
+	}
+	
+.sb-push-all(@full;@medium:0;@small:0) {
+	.sb-push(@full);
+	.sb-push(@medium,"medium");
+	.sb-push(@small,"small");
+}
+	
+/* *********************************************************** */
+// move block to left
+.sb-pull (@index,@query:"regular") when (@index < @sb-nb-columns) and (@query="regular") {
+	right: @min*@index;
+}
+
+/* *******************************************************  */
+/* ** Responsive helpers */
+/* *******************************************************  */
+
+	.sb-pull (@index,@query) when (@query = "medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-pull(@index); }
+	}
+
+	.sb-pull (@index,@query) when (@query="small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-pull(@index); }
+	}
+	
+	.sb-pull (@index,@query) when not (@query = "regular") and not (@query="medium") and not (@query="small") {
+		@media @query { .sb-pull(@index); }
+	}
+	
+.sb-pull-all(@full;@medium:0;@small:0) {
+	.sb-pull(@full);
+	.sb-pull(@medium,"medium");
+	.sb-pull(@small,"small");
+}

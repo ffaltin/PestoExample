@@ -1,0 +1,69 @@
+.sb-utabs (	
+	@margin: @sb-utabs-margin;
+	@tab-header-text-color-hover: @sb-utabs-header-text-color-hover;
+	@tab-header-background-hover: @sb-utabs-header-background-hover;
+	@tab-header-font-weight-hover: @sb-utabs-header-font-weight-hover;
+	@tab-header-line-height-hover: @sb-utabs-header-line-height-hover;
+	@tab-header-text-color: @sb-utabs-header-text-color;
+	@tab-header-background: @sb-utabs-header-background;
+	@tab-header-border: @sb-utabs-header-border;
+	@tab-header-font-weight: @sb-utabs-header-font-weight;
+	@tab-header-line-height: @sb-utabs-header-line-height;
+	@tab-header-text-color-current: @sb-utabs-header-text-color-current;
+	@tab-header-background-current: @sb-utabs-header-background-current;
+	@tab-header-font-weight-current: @sb-utabs-header-font-weight-current;
+	@tab-header-line-height-current: @sb-utabs-header-line-height-current;
+	@tab-content-background: @sb-utabs-content-background;
+	@tab-content-text-color: @sb-utabs-content-text-color;
+	@tab-content-font-weight: @sb-utabs-content-font-weight;
+	@tab-content-line-height: @sb-utabs-content-line-height;
+	@tab-content-padding: @sb-utabs-content-padding;
+) {
+	margin: @margin;
+	> nav {
+		ul {
+			margin-bottom: 0;
+			li {
+				.sb-width (12,"small");
+				.sb-attribute("small",border-top,@tab-header-border);
+				a {
+					&:hover {
+						color: @tab-header-text-color-hover;
+						background: @tab-header-background-hover;
+						font-weight: @tab-header-font-weight-hover;
+						line-height: @tab-header-line-height-hover;
+					}
+					color: @tab-header-text-color;
+					background: @tab-header-background;
+					font-weight: @tab-header-font-weight;
+						line-height: @tab-header-line-height;
+				}
+				&.current {
+					a, a:hover {
+						color: @tab-header-text-color-current;
+						background: @tab-header-background-current;
+						font-weight: @tab-header-font-weight-current;
+						line-height: @tab-header-line-height-current;
+					}
+				}
+			}
+		}
+	}
+	section {
+		background: @tab-content-background;
+		color: @tab-content-text-color;
+		font-weight: @tab-content-font-weight;
+		line-height: @tab-content-line-height;
+		padding: @tab-content-padding;
+	}
+}
+
+
+.defaultUtabs-style(@arg) when (@arg = true) {		
+	*[data-element=utabs] {
+		.sb-utabs();
+	}
+}
+
+// active or not the default style
+.defaultUtabs-style(@sb-use-default-utabs-style);

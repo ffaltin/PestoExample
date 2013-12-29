@@ -1,0 +1,104 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+@import "miscellaneous/styles.less";
+@import "miscellaneous/breadcrumbs.less";
+@import "miscellaneous/messaging.less";
+@import "miscellaneous/navigation.less";
+@import "miscellaneous/pagination.less";
+
+
+// -default Tag styles;
+.default-tag-style (@arg) when (@arg = true) {
+	.sb-tag-style-apply-default;
+}
+.default-tag-style(@sb-use-default-tag-style);
+
+
+// set default form -style
+.default-form-style(@arg) when (@arg = true) {
+	form {
+		.sb-form-constructor;
+	}
+}
+// active or not the default style
+.default-form-style(@sb-use-default-form-style);
+
+
+// set default -table -style
+.default-table-style(@arg) when (@arg = true) {
+	table {
+		.sb-table-constructor;
+		&.bordered {
+			.sb-table-add-style("bordered");
+		}
+		&.hovered {
+			.sb-table-add-style("hovered");
+		}
+		&.full-width {
+			.sb-table-add-style("full-width");
+		}
+		&.stated {
+			.sb-table-add-style("stated");
+		}
+	}
+}
+// active or not the default style
+.default-table-style(@sb-use-default-table-style);
+
+// set default -breadcrum -style
+.default-breadcrum-style(@arg) when (@arg = true) {
+	.sb-breadcrumbs {
+		.sb-crumb-container;
+		li {
+			.sb-crumb;
+		}
+	}
+}
+// active or not the default style
+.default-breadcrum-style(@sb-use-default-breadcrum-style);
+
+// -default -messaging -style
+.default-messaging-style(@arg) when (@arg = true) {		
+	// map "object" Message to msg-flash class
+	.sb-msg-flash {
+		&.success {.sb-message("success");}
+		&.error {.sb-message("error");}
+		&.information {.sb-message("information");}
+		&.warning {.sb-message("warning");}
+	}
+	// map "object" Alert to msg-alert class
+	.sb-msg-alert {
+		&.information {.sb-alert("information");}
+		&.error {.sb-alert("error");}
+		&.warning {.sb-alert("warning");}
+		&.success {.sb-alert("success");}
+	}
+}
+
+// active or not the default style
+.default-messaging-style(@sb-use-default-messaging-style);
+
+// -default pagination -style
+.default-pagination-style(@arg) when (@arg=true) {
+	.pagination { .sb-pagination-constructor(); }
+}
+
+// active or not the default style
+.default-pagination-style(@sb-use-default-pagination-style);

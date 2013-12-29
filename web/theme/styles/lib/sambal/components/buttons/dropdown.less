@@ -1,0 +1,96 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.sb-dropdown() {
+	display: inline-block;
+	.fixIe7(display,inline-block);
+	position: relative;
+	z-index: 10000;
+	span {
+		.sb-button("classic");
+		cursor: pointer;
+		margin: 0;
+	}
+	span:after {
+		display: inline-block;
+		.fixIe7(display,inline-block);;
+		border-color: @sb-dropdown-arrow-color transparent transparent transparent;
+		border-image: none;
+		border-style: solid;
+		border-width: @sb-dropdown-arrow-size;
+		content: "";
+		height: 0;
+		width: 0;
+		margin-left: 10px;
+		position: relative;
+		top: @sb-dropdown-arrowTop;
+	}
+	
+	> ul {
+		z-index: 9999;
+		display: none;
+		list-style: none;
+		background: @sb-dropdown-background;
+		position: absolute;
+		margin-top: 0px;
+		margin-left: 0px;
+		
+		border: @sb-dropdown-border;
+		font-size: @sb-dropdown-font-size;
+		padding: @sb-dropdown-padding;
+		width: inherit;
+		li {
+			width: 100%;
+			&.divider {
+				border-bottom: @sb-dropdown-border;
+				height: 3px;
+				line-height: 3px;
+				padding: 0;
+				margin-top: 3px;
+				margin-bottom: 7px;
+				float: left;
+			}
+			a {
+				width: 100%;
+				padding: 3px 15px;
+				display: inline-block;
+				.fixIe7(display,inline-block);;
+				color: @sb-dropdown-btn-color;
+				font-size: 0.8em;
+				text-decoration: none;
+				&:hover {
+					color: @sb-dropdown-btn-color-hover;
+					background: @sb-dropdown-btn-background-hover;
+				}
+			}
+		}
+	}
+	&:hover, &.active {
+		span {
+			.border-radius(@sb-button-default-radius @sb-button-default-radius 0 0);
+			background: @sb-button-background-hover;
+			color: @sb-button-color-hover;
+			border: @sb-button-border-hover;
+		}
+		> ul  {
+			.border-radius(0 0 @sb-button-default-radius @sb-button-default-radius);
+			display: block;
+		}
+	}		
+}

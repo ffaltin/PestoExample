@@ -1,0 +1,29 @@
+@import "rendering/core.less";
+@import "rendering/size.less";
+@import "rendering/offset.less";
+@import "rendering/composition.less";
+@import "rendering/attribute.less";
+
+// htmlObject resize automatically
+img { display: inline-block; .fixIe7(display,inline-block); -ms-interpolation-mode: bicubic; }
+img, object, embed { max-width: 100%; height: auto; }
+object, embed { height: 100%; }
+img { -ms-interpolation-mode: bicubic; }
+#map_canvas img, .map_canvas img { max-width: none!important; }
+
+
+// set default Button -style
+.defaultCompositionClassName(@arg) when (@arg = true) {
+	.sb-column-one-half { .sb-texts-columns("one.half"); }
+	.sb-column-one-third { .sb-texts-columns("one.third"); }
+	.sb-column-one-fourth { .sb-texts-columns("one.fourth"); }
+	.sb-composition-twins { .sb-composition("twins"); }
+	.sb-composition-triplets { .sb-composition("triplets"); }
+	.sb-composition-quadruplets { .sb-composition("quadruplets"); }
+	.sb-composition-one-two { .sb-composition("one.two"); }
+	.sb-composition-two-one { .sb-composition("two.one"); }
+	.sb-composition-one-three { .sb-composition("one.three"); }
+	.sb-composition-three-one { .sb-composition("three.one"); }
+}
+// active or not the default style
+.defaultCompositionClassName(@sb-use-default-class-name);

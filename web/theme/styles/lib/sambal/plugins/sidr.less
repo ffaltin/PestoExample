@@ -1,0 +1,161 @@
+.sidrObject (
+	@background:@sb-sidr-background,
+	@text-color: @sb-sidr-text-color,
+	@text-color-hover: @sb-sidr-text-color-hover,
+	@font-size: @sb-sidr-font-size,
+	@width: @sb-sidr-width,
+	@border-parent: @sb-sidr-border-parent,
+	@border: @sb-sidr-border,
+	@line-height: @sb-sidr-line-height,
+) {
+    display: none;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    z-index: 999999;
+    width: @sb-sidr-width;
+    overflow-x: none;
+    overflow-y: auto;
+    .sidr-inner {
+        padding: 0 0 15px;
+
+        > p {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+    }
+
+    &.right {
+        left: auto;
+        right: -(@sb-sidr-width);
+    }
+
+    &.left {
+        left: -(@sb-sidr-width);
+        right: auto;
+    }
+
+    font-size: @font-size;
+    background: @background;
+    color: @text-color;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-size: @font-size - 4;
+        font-weight: normal;
+        padding: 0 15px;
+        margin: 0 0 5px;
+        color: @text-color;
+        line-height: 24px;
+    }
+
+    p {
+        font-size: @font-size - 2;
+        margin: 0 0 12px;
+        a {
+            color: @text-color
+        }
+    }
+
+    > p {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    ul {
+        display: block;
+        margin: 0 0 15px;
+        padding: 0;
+		border: @border-parent;
+
+        li {
+            display: block;
+            margin: 0;
+            line-height: @line-height;
+            border: @border;
+			&.current a, &.current span {
+				color: @text-color-hover;
+				> * { color: @text-color-hover;}
+			}
+            a, span {
+                padding: 0 15px;
+                display: block;
+                text-decoration: none;
+                color: @text-color;
+				> * { color: @text-color;}
+				&:hover {
+					color: @text-color-hover;
+					> * { color: @text-color-hover;}
+				}
+            }
+
+            ul {
+                border-bottom: none;
+                margin: 0;
+                li {
+                    line-height: @line-height;
+                    font-size: @font-size - 2;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    a, span {
+                        color: @text-color;
+						> * { color: @text-color;}
+                        padding-left: 30px;
+						&:hover {
+							color: @text-color-hover;
+							> * { color: @text-color-hover;}
+						}
+                    }
+                }
+            }
+        }
+    }
+
+    form {
+        margin: 0 15px;
+    }
+
+    label {
+        font-size: @font-size - 2;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="email"],
+    input[type="number"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    textarea, select {
+        width: 100%;
+        font-size: @font-size - 2;
+        padding: 5px;
+        margin: 0 0 10px;
+        border: none;
+        color: @text-color;
+        display: block;
+        clear: both;
+    }
+
+    input[type=checkbox] {
+        width: auto;
+        display: inline;
+        clear: none;
+    }
+
+    input[type=button],
+    input[type=submit] {
+        color: @background;
+        background: @text-color;
+
+        &:hover {
+            background: @text-color
+        }
+    }
+}

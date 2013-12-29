@@ -1,0 +1,122 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Form component parameters -------------------------------------------*/
+	@sb-form-input-background: #fff;
+	@sb-form-input-border-color: #ccc;
+	@sb-form-input-text-color: rgba(0, 0, 0, 0.75);
+	
+	@sb-form-input-background-focus: #fafafa;
+	@sb-form-input-border-color-focus: #999999;
+	@sb-form-input-text-color-focus: rgba(0, 0, 0, 0.75);
+	
+	@sb-form-input-background-disabled: #ddd;
+	@sb-form-input-border-color-disabled: #ccc;
+	@sb-form-input-text-color-disabled: rgba(0, 0, 0, 0.75);
+	
+	@sb-form-font-size: 0.875em;
+	@sb-form-invalid-background:@sb-messaging-background-error;
+	@sb-form-invalid-border: @sb-messaging-border-error;
+	@sb-form-invalid-text-color: @sb-messaging-color-error;
+	@sb-form-invalid-background-focus:@sb-form-invalid-background;
+	@sb-form-invalid-border-focus:@sb-form-invalid-border;
+	@sb-form-invalid-text-color-focus:@sb-form-invalid-text-color;
+/* EndForm parameters --------------------------------------------------- */
+
+/* Tag -style component parameters ------------------------------------- */
+	@sb-tag-link-color: @sb-primary-color;
+	@sb-tag-link-decoration: none;
+	@sb-tag-link-color-hover: @sb-secondary-color;
+	
+	@sb-tag-font-size: 1em;
+	@sb-tag-font-family: "oswaldlight", sans-serif;
+	@sb-tag-font-weight: normal;
+	@sb-tag-color: #212121;
+	@sb-tag-paragraph-line-height: 1.6;
+	@sb-tag-paragraph-font-size: 1em;
+	@sb-tag-paragraph-margin-bottom: 1.25em;
+
+	@sb-tag-strong-font-family: @sb-tag-font-family;
+	@sb-tag-strong-font-weight: bold;
+	
+	@sb-tag-header-font-family: "oswaldlight", sans-serif;
+	@sb-tag-header-font-weight: normal;
+	@sb-tag-header-color: #444;
+/* End Tag -style component parameters -------------------------------- */
+
+/* -table style component parameters ------------------------------------ */
+	@sb-table-background: #fff;
+	@sb-table-text-align: left;
+	@sb-table-font-size:14px;
+	@sb-table-margin: 0 0 18px 0;
+	@sb-table-border: 1px solid #dddddd;
+	@sb-table-border-radius: @sb-default-radius-border;
+	//tHead
+	@sb-table-thead-background: #f5f5f5;
+	@sb-table-thead-padding: 8px 10px 9px;
+	@sb-table-thead-color: #222;
+	@sb-table-thead-font-weight: bold;
+	@sb-table-thead-text-align: @sb-table-text-align;
+	@sb-table-thead-font-size: @sb-table-font-size;
+	@sb-table-thead-valign: top;
+	@sb-table-thead-border: 1px solid #cacaca;
+	// tBody
+	@sb-table-tbody-background: none;
+	@sb-table-tbody-padding: 9px 10px;
+	@sb-table-tbody-tr-even-background: #f9f9f9;
+	@sb-table-tbody-font-weight: normal;
+	@sb-table-tbody-text-align: @sb-table-text-align;
+	@sb-table-tbody-td-color: #333;
+	@sb-table-tbody-valign: top;
+	@sb-table-tbody-border: 1px solid #cacaca;
+		// -hover
+		@sb-table-tbody-background-color: @sb-secondary-color;
+		@sb-table-tbody-background-hover: @sb-primary-color;
+		@sb-table-tbody-border-hover: 1px solid #cacaca;
+		
+	// -table -style Additionnal
+		// -success
+		@sb-table-tbody-background-success:@sb-messaging-background-success;
+		@sb-table-tbody-color-success:@sb-messaging-color-success;
+		// -warning
+		@sb-table-tbody-background-warning:@sb-messaging-background-warning;
+		@sb-table-tbody-color-warning:@sb-messaging-color-warning;
+		// -danger
+		@sb-table-tbody-background-danger: @sb-messaging-background-error;
+		@sb-table-tbody-color-danger:@sb-messaging-color-error;
+/* End -table -style component parameters -------------------------------- */
+
+/* Navigation component parameters ----------------------------------- */
+	@sb-menu-background: transparent;
+	@sb-menu-btn-background: transparent;
+	@sb-menu-btn-color: #fafafa;
+	@sb-menu-btn-padding: 0.2em 0.6em;
+	// we use this for hover
+	@sb-menu-btn-background-hover: transparent;
+	@sb-menu-btn-color-hover: @sb-primary-color;
+	// we use this for current
+	@sb-menu-btn-color-current: @sb-primary-color;
+	@sb-menu-btn-background-current: @sb-menu-btn-background;
+	// we use this for the second level of the menu main
+	@sb-menu-2nd-background: transparent;
+	@sb-menu-2nd-btn-background-hover: transparent;
+	@sb-menu-2nd-btn-background: transparent;
+	@sb-menu-2nd-btn-color: @sb-menu-btn-color;
+	@sb-menu-2nd-btn-color-hover: @sb-menu-btn-color-hover;
+/* End Navigation component parameters ----------------------------------- */

@@ -1,0 +1,205 @@
+/*
+ * Copyright 2012 Frédéric Faltin @ Alpaga Studio <frederic.faltin@alpagastudio.be>
+ *
+ *  This file is part of Sambal Framework.
+ *
+ *  Sambal is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Sambal is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Sambal.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* ****************************************************************************************** */
+/* *******************************************************  */
+/* ** -size for grid (only with nbColumn's number) */
+/* *******************************************************  */
+	// Sambal -size item without media query
+	.sb-size (@index,@type,@query:"regular") when (isnumber(@index)) and (@query="regular") {
+		.sb-core-computeColumn-size(@index,@type);
+	}
+/* *******************************************************  */
+/* ** -size for grid (only with pixel or percentage number) */
+/* *******************************************************  */
+	// Pixel for width
+	.sb-size (@index,@type,@query:"regular") when (@type = "width") and (ispixel(@index)) and (@query="regular") {
+		.sb-core-setColumn();
+		width: @index;
+	}
+	// Percent for width
+	.sb-size (@index,@type,@query:"regular") when (@type = "width") and (ispercentage(@index)) and (@query="regular") {
+		.sb-core-setColumn();
+		width: @index;
+	}
+	// Pixel for height
+	.sb-size (@index,@type,@query:"regular") when (@type = "height")  and (ispixel(@index)) and (@query="regular") {
+		.sb-core-setColumn();
+		height: @index;
+	}
+	// pixel for width
+	.sb-size (@index,@type,@query:"regular") when (@type = "height")  and (ispercentage(@index)) and (@query="regular") {
+		.sb-core-setColumn();
+		height: @index;
+	}
+
+	// Sambal -size item with media query
+	.sb-size (@index,@type,@query) when (@query = "medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-size (@index,@type); }
+	}
+
+	// Sambal -size item with media query
+	.sb-size (@index,@type,@query) when (@query = "small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-size (@index,@type); }
+	}
+
+	// Sambal -size item with media query
+	.sb-size (@index,@type,@query) when not (@query = "regular") and not(@query = "small") and not (@query = "medium") {
+		@media @query { .sb-size (@index,@type); }
+	}
+
+/* *******************************************************  */
+/* ** -sizes with nbColumn's numbers (for height and width) */
+/* *******************************************************  */
+	.sb-sizes (@index,@height,@query:"regular") when (isnumber(@index)) and (isnumber(@height)) and (@query="regular") {
+		.sb-core-computeColumn-size(@index);
+		.sb-core-computeColumn-size(@height,"height");
+	}
+/* *******************************************************  */
+/* ** -sizes with nbColumn's number for width and Pixel|percentage mode for height */
+/* *******************************************************  */
+	.sb-sizes (@index,@height,@query:"regular") when (isnumber(@index)) and (ispixel(@height)) and (@query="regular") {
+		.sb-core-computeColumn-size(@index);
+		height:@height;
+	}
+
+	.sb-sizes (@index,@height,@query:"regular") when (isnumber(@index)) and (ispercentage(@height)) and (@query="regular") {
+		.sb-core-computeColumn-size(@index);
+		height:@height;
+	}
+/* *******************************************************  */
+/* ** -sizes with nbColumn's number for height and Pixel|percentage mode for width */
+/* *******************************************************  */
+	.sb-sizes (@index,@height,@query:"regular") when (ispixel(@index)) and (isnumber(@height)) and (@query="regular") {
+		.sb-core-computeColumn-size(@height,"height");
+		width: @index;
+	}
+
+	.sb-sizes (@index,@height,@query:"regular") when (ispercentage(@index)) and (isnumber(@height)) and (@query="regular") {
+		.sb-core-computeColumn-size(@height,"height");
+		width: @index;
+	}
+/* *******************************************************  */
+/* ** -sizes with pixel element for height and width */
+/* *******************************************************  */
+	.sb-sizes (@index,@height,@query:"regular") when (ispixel(@index)) and (ispixel(@height)) and (@query="regular") {
+		.sb-core-setColumn();
+		width: @index;
+		height:@height;
+	}
+
+	.sb-sizes (@index,@height,@query:"regular") when (ispercentage(@index)) and (ispercentage(@height)) and (@query="regular") {
+		.sb-core-setColumn();
+		width: @index;
+		height:@height;
+	}
+
+	.sb-sizes (@index,@height,@query) when (@query="medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-sizes(@index,@height); }
+	}
+
+	.sb-sizes (@index,@height,@query) when (@query="small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-sizes(@index,@height); }
+	}
+
+	.sb-sizes (@index,@height,@query) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+		@media @query { .sb-sizes(@index,@height); }
+	}
+
+/* *******************************************************  */
+/* ** -size's Helpers: responsive, fast access, etc */
+/* *******************************************************  */
+	// Fast access
+	.sb-width(@width,@query:"regular") {
+		.sb-size (@width,"width",@query);
+	}
+
+	.sb-height(@width,@query:"regular") {
+		.sb-size (@width,"height",@query);
+	}
+
+	.sb-square(@value,@query:"regular") {
+		.sb-width (@value,@query);
+		.sb-height (@value,@query);
+	}
+
+	// Responsiveness
+	.sb-square-all (@full:12;@medium:12;@small:12;) {
+		.sb-square(@full);
+		.sb-square(@medium,"medium");
+		.sb-square(@small,"small");
+	}
+
+	.sb-width-all (@full:12;@medium:12;@small:12;) {
+		.sb-width(@full);
+		.sb-width(@medium,"medium");
+		.sb-width(@small,"small");
+	}
+
+	.sb-height-all (@full:12;@medium:12;@small:12;) {
+		.sb-height(@full);
+		.sb-height(@medium,"medium");
+		.sb-height(@small,"small");
+	}
+
+	.sb-sizes-all (@full-width:12;@full-height;@medium-width:12;@medium-height;@small-width:12;@mall-height) {
+		.sb-sizes (@full-width,@full-height);
+		.sb-sizes (@medium-width,@medium-height,"medium");
+		.sb-sizes (@small-width,@small-height,"small");
+	}
+	
+/* *******************************************************  */
+/* ** Create Grid element system (how many block per column or row) */
+/* *******************************************************  */
+	.sb-grid-horizontal (@width,@query:"regular") {
+		@final: @sb-nb-columns/@width;
+		& > * { .sb-width (@final, @query); }
+	}
+
+	.sb-grid-vertical (@height,@query:"regular") {
+		@final: @sb-nb-columns/@height;
+		& > * { .sb-height (@final, @query); }
+	}
+
+	.sb-grid-both (@width,@height,@query:"regular") {
+		@final-width: @sb-nb-columns/@width;
+		@final-height: @sb-nb-columns/@width;
+		& > * {
+			.sb-width (@final-width,@query);
+			.sb-height (@final-height,@query);
+		}
+	}
+
+	.sb-grid-horizontal-all (@full,@medium,@small) {
+		.sb-grid-horizontal (@full);
+		.sb-grid-horizontal (@medium,"medium");
+		.sb-grid-horizontal (@small,"small");
+	}
+
+	.sb-grid-vertical-all (@full,@medium,@small) {
+		.sb-grid-vertical (@full);
+		.sb-grid-vertical (@medium,"medium");
+		.sb-grid-vertical (@small,"small");
+	}
+
+	.sb-grid-both-all (@full,@medium,@small) {
+		.sb-grid-both (@full);
+		.sb-grid-both (@medium,"medium");
+		.sb-grid-both (@small,"small");
+	}

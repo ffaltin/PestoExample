@@ -1,0 +1,124 @@
+
+/* *******************************************************  */
+/* ** Create variables on the fly, with or without responsiveness */
+/* *******************************************************  */
+// Create dynamic property with chosen prefix
+.sb-property (@property, @value, @prefixes: '', @base: true) {
+  -sambal-property: ~`(function(){
+		// Create vars
+		var a=@{prefixes}.split(/\s+/),
+			r='',
+			i=0;
+		// add end flag for stopping loop
+		@{base}&&@{prefixes}&&a.push('');
+		for (;i<a.length;++i) {
+			b=a[i],r+=';\n '+(b?'-'+b+'-':b)+'@{property}: '+'@{value}';
+		}
+		return r;
+	})()`;
+}
+// create dynamic property with all prefix
+.sb-vendorify (@prop, @vals...) {
+	@property: e('@{prop}');
+	@values: `'@{arguments}'.replace(/^\[|\]$/g, '').split(', ').splice(1)`;
+ 
+	-sambal-vendorify: ~` ';\n' +
+	' -o-' + '@{property}: ' + '@{values};\n' +
+	' -ms-' + '@{property}: ' + '@{values};\n' +
+	' -moz-' + '@{property}: ' + '@{values};\n' +
+	' -webkit-' + '@{property}: ' + '@{values};\n' +
+	' @{property}: ' + '@{values}'`;
+}
+
+.sb-attribute (@query:"regular",@property,@value) when (@query="regular") {
+	-sambal-property: ~`(function(){
+		return ";\n "+"@{property}: "+"@{value}";
+	})()`;
+}
+
+.sb-attribute (@query,@property,@value) when (@query="medium") {
+	@media only screen and (max-width: @sb-min-large-width) { .sb-attribute ("regular",@property,@value); }
+}
+
+.sb-attribute (@query,@property,@value) when (@query="small") {
+	@media only screen and (max-width: @sb-min-medium-width) { .sb-attribute ("regular",@property,@value); }
+}
+
+.sb-attribute (@query,@property,@value) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+	@media @query { .sb-attribute ("regular",@property,@value); }
+}
+
+.sb-attributes (@query,@rest...) when (@query="regular") {
+	-sambal-property:~`(function(){
+		return ";\n "+(@{rest}).join(";\n");
+	})()`;
+}
+
+.sb-attributes (@query,@rest...) when (@query="medium") {
+	@media only screen and (max-width: @sb-min-large-width) { .sb-attributes ("regular",@rest); }
+}
+	
+.sb-attributes (@query,@rest...) when (@query="small") {
+	@media only screen and (max-width: @sb-min-medium-width) { .sb-attributes ("regular",@rest); }
+}
+	
+.sb-attributes (@query,@rest...) when not (@query="regular") and not(@query = "small") and not (@query = "medium") {
+	@media @query { .sb-attributes ("regular",@rest); }
+}
+	
+/* *********************************************************** */
+// Display (hide|show)
+/* *********************************************************** */
+.sb-hide-element() {
+	display: none;
+	.opacity(0,0);
+}
+
+	.sb-hide(@type:"regular") when (@type="regular") {
+		.sb-hide-element();
+	}
+
+	.sb-hide(@type) when (@type="medium") {
+		@media only screen and (max-width: @sb-min-large-width) { .sb-hide-element(); }
+	}
+
+	.sb-hide(@type) when (@type="small") {
+		@media only screen and (max-width: @sb-min-medium-width) { .sb-hide-element(); }
+	}
+
+	.sb-hide (@type) when not (@type="regular") and not (@type="medium") and not (@type="small") {
+		@media @type { .sb-hide-element(); }
+	}
+	
+
+.sb-show-element(@type:"block") when (@type = "block") {
+	display: block;
+	.opacity(1,100);
+} 
+
+.sb-show-element(@type) when (@type="inline-block") {
+	display: inline-block;
+	.fixIe7(display,inline-block);
+	.opacity(1,100);
+}
+
+	.sb-show(@size: "regular",@type:"block") when (@size="regular") {
+		.sb-show-element(@type);
+	} 
+
+	.sb-show(@size,@type:"block") when (@size="medium") {
+		@media only screen and (max-width: @sb-min-large-width) {
+			.sb-show-element(@type);
+		}
+	}
+
+	.sb-show(@size,@type:"block") when (@size="small") {
+		@media only screen and (max-width: @sb-min-medium-width) {
+			.sb-show-element(@type);
+		}
+	}
+	
+	.sb-show (@size,@type:"block") when not (@size="regular") and not (@size="medium") and not (@size="small") {
+		@media @size { .sb-show-element(@type); }
+	}
+	

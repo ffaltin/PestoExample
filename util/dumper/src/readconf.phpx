@@ -1,0 +1,45 @@
+#!/usr/bin/php
+<?php
+
+/**
+ * This script read local configuration ini files
+ */
+
+$path = __DIR__.'/../../../app/config/local';
+
+if (! isset($_SERVER['argv'][1])) {
+	print "Usage: %this% <file.key[.subkey]>\n";
+	exit(1);
+}
+$location = $_SERVER['argv'][1];
+
+if (! preg_match(':^(?P<file>[a-z0-9-]+)\\.(?P<key>[.a-z0-9_-]+)$:', $location, $m)) {
+	print "Usage: %this% <file.key[.subkey]>\n";
+	exit(1);
+}
+
+$file = realpath("{$path}/{$m['file']}.ini");
+$key = explode('.', $m['key']);
+$hasSections = count($key) > 1;
+
+if (! is_file($file)) {
+	print "Local configuration file does not exist: {$m['file']}.ini\n";
+	exit(1);
+}
+
+$conf = parse_ini_file($file, $hasSections);
+foreach ($key as $el) {
+	if (! isset($conf[$el])) {
+		print "Key '".implode('.', $key)."' does not exist in file {$m['file']}.ini\n";
+		exit(1);
+	}
+	$conf = $conf[$el];
+}
+
+if (! is_string($conf)) {
+	print "Configuration value does not appear to be a string\n";
+	exit(1);
+}
+
+print "{$conf}\n";
+exit(0);
